@@ -10,6 +10,7 @@
                     <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
                 -->
             </ResourceDictionary.MergedDictionaries>
+            <FontFamily x:Key="FontAwesome">/Fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
