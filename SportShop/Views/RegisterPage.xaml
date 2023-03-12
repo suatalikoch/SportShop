@@ -36,7 +36,9 @@
             Grid.Row="0"
             Text="Create account"
             FontSize="28"
-            FontWeight="Bold"/>
+            FontWeight="Bold"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
         <Grid
             Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -103,6 +105,12 @@
             Command="{Binding NavigateEmailConfirmationCommand}"
             Background="Black"
             Foreground="White"
-            BorderBrush="Black"/>
+            BorderBrush="Black">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="4"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </UserControl>
