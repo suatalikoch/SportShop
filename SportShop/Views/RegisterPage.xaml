@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="SportShop.Views.RegisterPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SportShop.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="White">
+    <Grid
+        HorizontalAlignment="Center"
+        Margin="24"
+        MaxWidth="410">
+        <TextBlock
+            Text="Create account"
+            FontSize="28"
+            FontWeight="Bold"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBox
+                Grid.Column="0"
+                Text="First Name"/>
+            <TextBox
+                Grid.Column="1"
+                Text="Last Name"/>
+        </Grid>
+        <TextBox Text="Email" />
+        <PasswordBox />
+        <TextBlock
+            Text="Minimum 8 characters, including lowercase, uppercase and a number. Don't repeat the same character more than 3 times"
+            Foreground="Gray"
+            FontSize="11"
+            TextWrapping="Wrap"/>
+        <PasswordBox />
+        <TextBox Text="Mobile Number" />
+        <TextBox Text="Country" />
+        <Button
+            Content="Already have an account? Sign in Now" 
+            Width="300"
+            Background="Transparent"
+            HorizontalAlignment="Left"
+            Command="{Binding NavigateLoginCommand}"
+            Foreground="White" />
+        <CheckBox
+            Content="I have been able to read and understand the information on the use of my personal data explained in the Privacy Policy"/>
+        <CheckBox
+            Content="I want to receive news and customised commercial  communications from of SportShop via email and other means"/>
+        <Button
+            Content="CREATE ACCOUNT"
+            FontSize="16"
+            FontWeight="Bold"
+            Width="362"
+            Height="52"
+            HorizontalAlignment="Left"
+            Command="{Binding NavigateEmailConfirmationCommand}"
+            Background="Black"
+            Foreground="White"
+            BorderBrush="Black"/>
+    </Grid>
+</UserControl>
