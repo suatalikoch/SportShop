@@ -7,8 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="720" 
              d:DesignWidth="1280"
-             Background="White"
-             Foreground="Black">
+             Background="White">
 
     <Grid
         HorizontalAlignment="Center"
@@ -45,7 +44,7 @@
             Grid.Row="3"
             VerticalContentAlignment="Center"
             Padding="12 0"
-            Password="password"/>
+            Password="123456789"/>
         
         <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
@@ -73,7 +72,8 @@
             Grid.Row="7"
             Content="LOGIN"
             FontSize="16"
-            FontWeight="Bold"            
+            Width="410"
+            FontWeight="Bold"        
             Command="{Binding NavigateHomeCommand}"
             Background="Black"
             Foreground="White"
