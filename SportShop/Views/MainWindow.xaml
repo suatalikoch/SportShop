@@ -26,6 +26,9 @@
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <local:HomePage/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AccountViewModel}">
+                <local:AccountPage/>
+            </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
 </Window>
