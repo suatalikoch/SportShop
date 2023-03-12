@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using SportShop.Commands;
+﻿using SportShop.Commands;
 using SportShop.Stores;
 using System;
 using System.Collections.Generic;
@@ -10,12 +9,13 @@ using System.Windows.Input;
 
 namespace SportShop.ViewModels
 {
-    public class EmailConfirmationViewModel : BaseViewModel
+    internal class ForgotPasswordViewModel : BaseViewModel
     {
         public ICommand NavigateRegisterCommand { get; }
-        public EmailConfirmationViewModel(NavigationStore navigationStore)
+        public ForgotPasswordViewModel(NavigationStore navigationStore)
         {
             NavigateRegisterCommand = new NavigateCommand<RegisterViewModel>(navigationStore, () => new RegisterViewModel(navigationStore));
         }
+    
     }
 }
