@@ -79,7 +79,8 @@
             FontSize="16"
             Width="410"
             FontWeight="Bold"        
-            Command="{Binding NavigateHomeCommand}"
+            Command="{Binding LoginCommand}"
+            CommandParameter=""
             Background="Black"
             Foreground="White"
             BorderBrush="Black" Grid.ColumnSpan="3">
