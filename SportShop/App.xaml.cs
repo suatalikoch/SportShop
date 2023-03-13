@@ -18,12 +18,11 @@ namespace SportShop
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            NavigationStore navigationStore = new();
-            navigationStore.CurrentViewModel = new RegisterViewModel(navigationStore);
+            NavigationStore.CurrentViewModel = new LoginViewModel();
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(navigationStore)
+                DataContext = new MainViewModel()
             };
 
             MainWindow.Show();

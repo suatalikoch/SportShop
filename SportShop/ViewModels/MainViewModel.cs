@@ -9,12 +9,9 @@ namespace SportShop.ViewModels
 {
     public partial class MainViewModel : BaseViewModel
     {
-        private readonly NavigationStore _navigationStore;
-
-        public MainViewModel(NavigationStore navigationStore)
+        public MainViewModel()
         {
-            _navigationStore = navigationStore;
-            _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+            NavigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 
         private void OnCurrentViewModelChanged()
@@ -22,6 +19,6 @@ namespace SportShop.ViewModels
             OnPropertyChanged(nameof(CurrentViewModel));
         }
 
-        public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel; 
+        public BaseViewModel CurrentViewModel => NavigationStore.CurrentViewModel; 
     }
 }

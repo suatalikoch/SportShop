@@ -6,13 +6,23 @@ namespace SportShop.ViewModels
 {
     class AccountViewModel : BaseViewModel
     {
-        public ICommand NavigateLoginCommand { get; }
-        public ICommand NavigateHomeCommand { get; }
+        public ICommand LogOutCommand { get; }
+        public ICommand NavigateBackCommand { get; }
 
-        public AccountViewModel(NavigationStore navigationStore)
+        public AccountViewModel()
         {
-            NavigateLoginCommand = new NavigateCommand<LoginViewModel>(navigationStore, () => new LoginViewModel(navigationStore));
-            NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
+            LogOutCommand = new ViewModelCommand(ExecuteLogOutCommand, CanExecuteLogOutCommand);
+            NavigateBackCommand = new NavigateCommand<HomeViewModel>(() => new HomeViewModel());
+        }
+
+        private void ExecuteLogOutCommand(object obj)
+        {
+            NavigationStore.CurrentViewModel = new LoginViewModel();
+        }
+
+        private bool CanExecuteLogOutCommand(object obj)
+        {
+            return true;
         }
     }
 }

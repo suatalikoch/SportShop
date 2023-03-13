@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using MySql.EntityFrameworkCore.Metadata;
 
 #nullable disable
@@ -6,11 +7,14 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Fix : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySQL:Charset", "utf8mb4");
+
             migrationBuilder.CreateTable(
                 name: "Carts",
                 columns: table => new
@@ -72,6 +76,35 @@ namespace Data.Migrations
                     table.PrimaryKey("PK_Subcategories", x => x.Id);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    FirstName = table.Column<string>(type: "longtext", nullable: false),
+                    LastName = table.Column<string>(type: "longtext", nullable: false),
+                    Email = table.Column<string>(type: "longtext", nullable: false),
+                    Password = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
+                    Phone = table.Column<string>(type: "longtext", nullable: true),
+                    Address = table.Column<string>(type: "longtext", nullable: true),
+                    City = table.Column<string>(type: "longtext", nullable: true),
+                    Region = table.Column<string>(type: "longtext", nullable: true),
+                    PostalCode = table.Column<string>(type: "longtext", nullable: true),
+                    Country = table.Column<string>(type: "longtext", nullable: true),
+                    IsEmailConfirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    RegistrationDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.ComputedColumn),
+                    LastLoginDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.ComputedColumn),
+                    CartId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
         }
 
         /// <inheritdoc />
@@ -88,6 +121,9 @@ namespace Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Subcategories");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

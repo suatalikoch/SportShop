@@ -10,11 +10,11 @@
         <Button
             Background="Red"
             Content="Back"
-            Command="{Binding NavigateHomeCommand}"/>
+            Command="{Binding NavigateBackCommand}"/>
         <Button
             Width="500"
             Background="White"
             Content="Sign Out"
-            Command="{Binding NavigateLoginCommand}"/>
+            Command="{Binding LogOutCommand}"/>
     </Grid>
 </UserControl>

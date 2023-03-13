@@ -1,18 +1,14 @@
 using Data;
-using Data.Models;
 using SportShop.Models;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Linq;
-using System.Windows.Documents;
 
 namespace Business
 {
     public class UserBusiness
     {
-        private DatabaseContext dbcontext;
+        private DatabaseContext? dbcontext;
 
         public List<User> GetAll()
         {
@@ -29,18 +25,17 @@ namespace Business
                 return dbcontext.Users.Find(id);
             }
         }
-        public User GetByUsername(string username)
+
+        public User GetByEmail(string email)
         {
             using (dbcontext = new DatabaseContext())
             {
-                return dbcontext.Users.Where(x => x.Username.Equals(username)).First();
-                
+                return dbcontext.Users.Where(x => x.Email.Equals(email)).First();
             }
         }
 
         public void Add(User user)
         {
-
             using (dbcontext = new DatabaseContext())
             {
                 dbcontext.Users.Add(user);
@@ -53,6 +48,7 @@ namespace Business
             using (dbcontext = new DatabaseContext())
             {
                 var item = dbcontext.Users.Find(user.Id);
+
                 if (item != null)
                 {
                     dbcontext.Entry(item).CurrentValues.SetValues(user);
@@ -66,6 +62,7 @@ namespace Business
             using (dbcontext = new DatabaseContext())
             {
                 var item = dbcontext.Users.Find(id);
+
                 if (item != null)
                 {
                     dbcontext.Users.Remove(item);

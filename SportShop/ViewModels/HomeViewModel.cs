@@ -8,9 +8,9 @@ namespace SportShop.ViewModels
     {
         public ICommand NavigateAccountCommand { get; }
 
-        public HomeViewModel(NavigationStore navigationStore)
+        public HomeViewModel()
         {
-            NavigateAccountCommand = new NavigateCommand<AccountViewModel>(navigationStore, () => new AccountViewModel(navigationStore));
+            NavigateAccountCommand = new NavigateCommand<AccountViewModel>(() => new AccountViewModel());
         }
     }
 }

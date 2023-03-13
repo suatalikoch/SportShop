@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using SportShop.Commands;
+﻿using SportShop.Commands;
 using SportShop.Stores;
 using System;
 using System.Collections.Generic;
@@ -13,9 +12,10 @@ namespace SportShop.ViewModels
     public class EmailConfirmationViewModel : BaseViewModel
     {
         public ICommand NavigateRegisterCommand { get; }
-        public EmailConfirmationViewModel(NavigationStore navigationStore)
+
+        public EmailConfirmationViewModel()
         {
-            NavigateRegisterCommand = new NavigateCommand<RegisterViewModel>(navigationStore, () => new RegisterViewModel(navigationStore));
+            NavigateRegisterCommand = new NavigateCommand<RegisterViewModel>(() => new RegisterViewModel());
         }
     }
 }

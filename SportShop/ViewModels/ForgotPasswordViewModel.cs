@@ -11,11 +11,23 @@ namespace SportShop.ViewModels
 {
     internal class ForgotPasswordViewModel : BaseViewModel
     {
-        public ICommand NavigateRegisterCommand { get; }
-        public ForgotPasswordViewModel(NavigationStore navigationStore)
+        public ICommand RecoverPasswordCommand { get; }
+        public ICommand NavigateBackCommand { get; }
+
+        public ForgotPasswordViewModel()
         {
-            NavigateRegisterCommand = new NavigateCommand<RegisterViewModel>(navigationStore, () => new RegisterViewModel(navigationStore));
+            RecoverPasswordCommand = new ViewModelCommand(ExecuteRecoverPasswordCommand, CanExecuteRecoverPasswordCommand);
+            NavigateBackCommand = new NavigateCommand<LoginViewModel>(() => new LoginViewModel());
         }
-    
+
+        private void ExecuteRecoverPasswordCommand(object obj)
+        {
+            NavigationStore.CurrentViewModel = new HomeViewModel();
+        }
+
+        private bool CanExecuteRecoverPasswordCommand(object obj)
+        {
+            return true;
+        }
     }
 }

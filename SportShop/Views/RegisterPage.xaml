@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SportShop.Views"
+             xmlns:w="clr-namespace:SportShop.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="720"
              d:DesignWidth="1280"
@@ -51,22 +52,23 @@
                 Padding="12 0"
                 VerticalContentAlignment="Center"
                 Foreground="Gray"
-                Text="First Name"/>
+                Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox
                 Grid.Column="2"
                 Padding="12 0"
                 VerticalContentAlignment="Center"
                 Foreground="Gray"
-                Text="Last Name"/>
+                Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <TextBox
             Grid.Row="3"
             Padding="12 0"
             VerticalContentAlignment="Center"
             Foreground="Gray"
-            Text="Email"/>
+            Text="{Binding Email}"/>
         <PasswordBox
-            Password="123456789"
+            w:PasswordHelper.Attach="True"
+            w:PasswordHelper.Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
             Padding="12 0"
             VerticalContentAlignment="Center"
             Grid.Row="5"/>
@@ -77,7 +79,8 @@
             FontSize="11"
             TextWrapping="Wrap"/>
         <PasswordBox
-            Password="123456789"
+            w:PasswordHelper.Attach="True"
+            w:PasswordHelper.Password="{Binding ConfirmPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
             Padding="12 0"
             VerticalContentAlignment="Center"
             Grid.Row="9"/>
@@ -91,9 +94,11 @@
             Command="{Binding NavigateLoginCommand}"/>
         <CheckBox
             Grid.Row="13"
+            IsChecked="{Binding IsConfirmedPrivacyPolicy, UpdateSourceTrigger=PropertyChanged}"
             Content="I have been able to read and understand the information on the use of my personal data explained in the Privacy Policy"/>
         <CheckBox
             Grid.Row="15"
+            IsChecked="{Binding IsSubscribedToNews, UpdateSourceTrigger=PropertyChanged}"
             Content="I want to receive news and customised commercial  communications from of SportShop via email and other means"/>
         <Button
             Grid.Row="17"
@@ -102,7 +107,7 @@
             Width="410"
             FontWeight="Bold"
             HorizontalAlignment="Left"
-            Command="{Binding NavigateEmailConfirmationCommand}"
+            Command="{Binding RegisterCommand}"
             Background="Black"
             Foreground="White"
             BorderBrush="Black">

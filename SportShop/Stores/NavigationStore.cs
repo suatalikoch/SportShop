@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace SportShop.Stores
 {
-    public class NavigationStore
+    public static class NavigationStore
     {
-        public event Action CurrentViewModelChanged;
+        public static event Action CurrentViewModelChanged;
 
-        private BaseViewModel _currentViewModel;
+        private static BaseViewModel _currentViewModel;
 
-        public BaseViewModel CurrentViewModel
+        public static BaseViewModel CurrentViewModel
         {
             get => _currentViewModel;
             set
@@ -23,7 +23,7 @@ namespace SportShop.Stores
             }
         }
 
-        private void OnCurrentViewModelChanged()
+        private static void OnCurrentViewModelChanged()
         {
             CurrentViewModelChanged?.Invoke();
         }
