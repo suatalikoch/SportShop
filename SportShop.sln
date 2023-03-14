@@ -4,8 +4,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportShop", "SportShop\SportShop.csproj", "{317B2721-0F36-4804-8DCA-27AFC8203638}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CD2BBA08-4E42-4483-A1C5-3945A7794440} = {CD2BBA08-4E42-4483-A1C5-3945A7794440}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportShopConsole", "SportShopConsole\SportShopConsole.csproj", "{7952484A-D09C-48CE-BB67-F8E2422448BE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CD2BBA08-4E42-4483-A1C5-3945A7794440} = {CD2BBA08-4E42-4483-A1C5-3945A7794440}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitTests", "NUnitTests\NUnitTests.csproj", "{0B7D9E75-8253-400A-AF47-373A0B5F87A7}"
 EndProject
