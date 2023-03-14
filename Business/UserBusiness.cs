@@ -26,11 +26,16 @@ namespace Business
             }
         }
 
-        public User GetByEmail(string email)
+        public User? GetByEmail(string email)
         {
             using (dbcontext = new DatabaseContext())
             {
-                return dbcontext.Users.Where(x => x.Email.Equals(email)).First();
+                if (dbcontext.Users.Any(x => x.Email.Equals(email)))
+                {
+                    return dbcontext.Users.Where(x => x.Email.Equals(email)).First();
+                };
+
+                return null;
             }
         }
 

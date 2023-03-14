@@ -1,8 +1,9 @@
 ﻿using Business;
 using SportShop.Commands;
 using SportShop.Stores;
-using System;
+using System.Windows;
 using System.Windows.Input;
+using BC = BCrypt.Net.BCrypt;
 
 namespace SportShop.ViewModels
 {
@@ -17,7 +18,7 @@ namespace SportShop.ViewModels
 
         public LoginViewModel()
         {
-            LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
+            LoginCommand = new ViewModelCommand(ExecuteLoginCommand);
             NavigateForgotPasswordCommand = new NavigateCommand<ForgotPasswordViewModel>(() => new ForgotPasswordViewModel());
             NavigateRegisterCommand = new NavigateCommand<RegisterViewModel>(() => new RegisterViewModel());
         }
@@ -26,18 +27,23 @@ namespace SportShop.ViewModels
         {
             UserBusiness userBusiness = new();
 
-            bool check = false;
+            if (userBusiness.GetByEmail(Email) is null)
+            {
+                MessageBox.Show("Email is not registered in database!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
-            try
-            {
-                check = userBusiness.GetByEmail(Email).Password.Equals(Password);
-            }
-            catch (Exception e)
-            {
                 return false;
             }
 
-            return check;
+            if (Password is null || !BC.Verify(Password, userBusiness.GetByEmail(Email).Password))
+            {
+                MessageBox.Show("Password doesn't match the email!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return false;
+            }
+
+            MessageBox.Show("Login credentials are matched!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            return true;
         }
 
         private void LogUserIn()
@@ -51,21 +57,6 @@ namespace SportShop.ViewModels
         private void ExecuteLoginCommand(object obj)
         {
             LogUserIn();
-        }
-
-        private bool CanExecuteLoginCommand(object obj)
-        {
-            if (string.IsNullOrWhiteSpace(Email))
-            {
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(Password))
-            {
-                return false;
-            }
-
-            return true;
         }
 
         public string Email

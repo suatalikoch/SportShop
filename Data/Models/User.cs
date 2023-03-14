@@ -13,17 +13,28 @@ namespace SportShop.Models
         public int Id { get; set; }
 
         [Required]
+        [MinLength(1)]
+        [MaxLength(50)]
+        [RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
         public string FirstName { get; set; }
 
         [Required]
+        [MinLength(1)]
+        [MaxLength(50)]
+        [RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
         public string LastName { get; set; }
 
         [Required]
+        [EmailAddress]
+        [RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
         public string Email { get; set; }
 
         [Required]
-        [MinLength(3), MaxLength(30)]
+        [RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
+        [MinLength(3), MaxLength(255)]
         public string Password { get; set; }
+
+        [Phone]
         public string? Phone { get; set; }
         public string? Address { get; set; }
         public string? City { get; set; }

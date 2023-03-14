@@ -1,5 +1,4 @@
 ﻿using SportShop.Commands;
-using SportShop.Stores;
 using System.Windows.Input;
 
 namespace SportShop.ViewModels

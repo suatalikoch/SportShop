@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace SportShop.ViewModels
 {
-    class AccountViewModel : BaseViewModel
+    public class AccountViewModel : BaseViewModel
     {
         public ICommand LogOutCommand { get; }
         public ICommand NavigateBackCommand { get; }

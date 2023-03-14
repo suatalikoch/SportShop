@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace SportShop.ViewModels
 {
-    internal class ForgotPasswordViewModel : BaseViewModel
+    public class ForgotPasswordViewModel : BaseViewModel
     {
         public ICommand RecoverPasswordCommand { get; }
         public ICommand NavigateBackCommand { get; }

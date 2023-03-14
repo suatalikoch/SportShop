@@ -1,9 +1,15 @@
 ﻿using Business;
+using Microsoft.EntityFrameworkCore;
 using SportShop.Commands;
 using SportShop.Models;
 using SportShop.Stores;
-using System;
+using System.Windows;
 using System.Windows.Input;
+using BC = BCrypt.Net.BCrypt;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
+using System;
 
 namespace SportShop.ViewModels
 {
@@ -23,11 +29,23 @@ namespace SportShop.ViewModels
         public RegisterViewModel()
         {
             NavigateLoginCommand = new NavigateCommand<LoginViewModel>(() => new LoginViewModel());
-            RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand, CanExecuteRegisterCommand);
+            RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand);
         }
 
-        private void ExecuteRegisterCommand(object obj)
+        private void RegisterUser()
         {
+            if (Password is null || ConfirmPassword is null)
+            {
+                return;
+            }
+
+            if (!Password.Equals(ConfirmPassword))
+            {
+                MessageBox.Show("Passwords do not match", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return;
+            }
+
             UserBusiness userBusiness = new();
 
             User user = new()
@@ -35,54 +53,49 @@ namespace SportShop.ViewModels
                 FirstName = FirstName,
                 LastName = LastName,
                 Email = Email,
-                Password = Password
+                Password = BC.HashPassword(Password, BC.GenerateSalt())
             };
 
             try
             {
                 userBusiness.Add(user);
             }
-            catch (Exception e)
+            catch (DbUpdateException e)
             {
+                MessageBox.Show(e.InnerException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
                 return;
             }
 
             NavigationStore.CurrentViewModel = new EmailConfirmationViewModel();
         }
 
-        private bool CanExecuteRegisterCommand(object obj)
+        private void SendConfirmationEmail()
         {
-            if (string.IsNullOrWhiteSpace(FirstName))
-            {
-                return false;
-            }
+            var email = new MimeMessage();
 
-            if (string.IsNullOrWhiteSpace(LastName))
-            {
-                return false;
-            }
+            int code = new Random().Next(100000, 1000000);
 
-            if (string.IsNullOrWhiteSpace(Email))
+            email.From.Add(new MailboxAddress("SportShop Support", "sportshop@gmail.com"));
+            email.To.Add(new MailboxAddress($"{FirstName} {LastName}", Email));
+            email.Subject = "Confirm your email";
+            email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
             {
-                return false;
-            }
+                Text = $"Code: <b>{code.ToString().Insert(3, "-")}</b>"
+            };
 
-            if (string.IsNullOrWhiteSpace(Password))
-            {
-                return false;
-            }
+            using var smtp = new SmtpClient();
 
-            if (string.IsNullOrWhiteSpace(ConfirmPassword))
-            {
-                return false;
-            }
+            smtp.Connect("smtp.gmail.com", 587, true);
+            smtp.Authenticate("smtp_username", "smtp_password");
+            smtp.Send(email);
+            smtp.Disconnect(true);
+        }
 
-            if (!IsConfirmedPrivacyPolicy)
-            {
-                return false;
-            }
-
-            return true;
+        private void ExecuteRegisterCommand(object obj)
+        {
+            RegisterUser();
+            SendConfirmationEmail();
         }
 
         public string? FirstName

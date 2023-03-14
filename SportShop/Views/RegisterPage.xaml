@@ -52,23 +52,24 @@
                 Padding="12 0"
                 VerticalContentAlignment="Center"
                 Foreground="Gray"
-                Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnDataErrors=True}"
+                />
             <TextBox
                 Grid.Column="2"
                 Padding="12 0"
                 VerticalContentAlignment="Center"
                 Foreground="Gray"
-                Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding LastName,UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnDataErrors=True}"/>
         </Grid>
         <TextBox
             Grid.Row="3"
             Padding="12 0"
             VerticalContentAlignment="Center"
             Foreground="Gray"
-            Text="{Binding Email}"/>
+            Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnDataErrors=True}"/>
         <PasswordBox
             w:PasswordHelper.Attach="True"
-            w:PasswordHelper.Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            w:PasswordHelper.Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, ValidatesOnDataErrors=True}"
             Padding="12 0"
             VerticalContentAlignment="Center"
             Grid.Row="5"/>
@@ -80,7 +81,7 @@
             TextWrapping="Wrap"/>
         <PasswordBox
             w:PasswordHelper.Attach="True"
-            w:PasswordHelper.Password="{Binding ConfirmPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            w:PasswordHelper.Password="{Binding ConfirmPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, ValidatesOnDataErrors=True}"
             Padding="12 0"
             VerticalContentAlignment="Center"
             Grid.Row="9"/>
@@ -94,11 +95,11 @@
             Command="{Binding NavigateLoginCommand}"/>
         <CheckBox
             Grid.Row="13"
-            IsChecked="{Binding IsConfirmedPrivacyPolicy, UpdateSourceTrigger=PropertyChanged}"
+            IsChecked="{Binding IsConfirmedPrivacyPolicy, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnDataErrors=True}"
             Content="I have been able to read and understand the information on the use of my personal data explained in the Privacy Policy"/>
         <CheckBox
             Grid.Row="15"
-            IsChecked="{Binding IsSubscribedToNews, UpdateSourceTrigger=PropertyChanged}"
+            IsChecked="{Binding IsSubscribedToNews, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnDataErrors=True}"
             Content="I want to receive news and customised commercial  communications from of SportShop via email and other means"/>
         <Button
             Grid.Row="17"
