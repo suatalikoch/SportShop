@@ -1,10 +1,12 @@
-﻿namespace SportShopConsole
+﻿using SportShopConsole.Presentation;
+
+namespace SportShopConsole
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Display display = new();
         }
     }
 }

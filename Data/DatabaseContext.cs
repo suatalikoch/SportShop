@@ -1,11 +1,11 @@
-using Data.Models;
+﻿using Data.Models;
 using Microsoft.EntityFrameworkCore;
 using SportShop.Models;
 
 namespace Data
 {
     public class DatabaseContext : DbContext
-    {       
+    {
         public DbSet<User> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Subcategory> Subcategories { get; set; }
