@@ -10,28 +10,72 @@
         Height="720"
         Width="1280"
         WindowStartupLocation="CenterScreen"
-        WindowState="Normal"
-        ResizeMode="CanResize">
-    <ContentControl Content="{Binding CurrentViewModel}">
-        <ContentControl.Resources>
-            <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
-                <local:RegisterPage/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:EmailConfirmationViewModel}">
-                <local:EmailConfirmationPage/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
-                <local:LoginPage/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:ForgotPasswordViewModel}">
-                <local:ForgotPasswordPage/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-                <local:HomePage/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:AccountViewModel}">
-                <local:AccountPage/>
-            </DataTemplate>
-        </ContentControl.Resources>
-    </ContentControl>
+        WindowState="Normal">
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            CaptionHeight="30"
+            CornerRadius="0"
+            GlassFrameThickness="0"/>
+    </WindowChrome.WindowChrome>
+    <Border
+        BorderThickness="1"
+        BorderBrush="{Binding BorderColor}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0"
+                Width="136"
+                HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Content="&#xE949;"
+                    Command="{Binding MinimizeCommand}"
+                    Style="{StaticResource ControlButton}"/>
+                <Button
+                    Grid.Column="1"
+                    Content="{Binding MaximizeContent, UpdateSourceTrigger=PropertyChanged, Mode =TwoWay}"
+                    Command="{Binding MaximizeCommand}"
+                    Style="{StaticResource ControlButton}"/>
+                <Button
+                    Grid.Column="2"
+                    Content="&#xE106;"
+                    Command="{Binding CloseCommand}"
+                    Style="{StaticResource ControlButton}"/>
+            </Grid>
+            <ContentControl Grid.Row="1"
+                        Content="{Binding CurrentViewModel}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
+                        <local:MainWindow/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
+                        <local:RegisterPage/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:EmailConfirmationViewModel}">
+                        <local:EmailConfirmationPage/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+                        <local:LoginPage/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:ForgotPasswordViewModel}">
+                        <local:ForgotPasswordPage/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                        <local:HomePage/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:AccountViewModel}">
+                        <local:AccountPage/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </Grid>
+    </Border>
 </Window>

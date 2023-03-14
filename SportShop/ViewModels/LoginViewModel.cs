@@ -18,7 +18,7 @@ namespace SportShop.ViewModels
 
         public LoginViewModel()
         {
-            LoginCommand = new ViewModelCommand(ExecuteLoginCommand);
+            LoginCommand = new RelayCommand(ExecuteLoginCommand);
             NavigateForgotPasswordCommand = new NavigateCommand<ForgotPasswordViewModel>(() => new ForgotPasswordViewModel());
             NavigateRegisterCommand = new NavigateCommand<RegisterViewModel>(() => new RegisterViewModel());
         }

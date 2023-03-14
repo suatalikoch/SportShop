@@ -5,10 +5,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
-                <!--
-                    <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
-                -->
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/Button.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/ControlButton.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/TextBox.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/PasswordBox.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/HyperLinkButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="FontAwesome">/Fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
         </ResourceDictionary>

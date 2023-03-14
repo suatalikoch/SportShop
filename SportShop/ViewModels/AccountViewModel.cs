@@ -11,7 +11,7 @@ namespace SportShop.ViewModels
 
         public AccountViewModel()
         {
-            LogOutCommand = new ViewModelCommand(ExecuteLogOutCommand, CanExecuteLogOutCommand);
+            LogOutCommand = new RelayCommand(ExecuteLogOutCommand, CanExecuteLogOutCommand);
             NavigateBackCommand = new NavigateCommand<HomeViewModel>(() => new HomeViewModel());
         }
 
