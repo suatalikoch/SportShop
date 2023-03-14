@@ -52,5 +52,10 @@ namespace SportShop.Models
 
         [ForeignKey(nameof(Cart))]
         public int CartId { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id} {FirstName} {LastName} {Email} {Phone} {Address} {City} {Region} {PostalCode} {Country} {IsEmailConfirmed} {RegistrationDate} {LastLoginDate}";
+        }
     }
 }

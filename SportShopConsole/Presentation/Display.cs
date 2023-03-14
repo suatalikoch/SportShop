@@ -1,17 +1,12 @@
 ﻿using Business;
 using SportShop.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SportShopConsole.Presentation
 {
     internal class Display
     {
-        private int closeOperationId = 6;
-        UserBusiness userBusiness = new();
+        private readonly int closeOperationId = 6;
+        private readonly UserBusiness userBusiness = new();
 
         public Display()
         {
@@ -29,15 +24,19 @@ namespace SportShopConsole.Presentation
             Console.WriteLine("4. Fetch entry by ID");
             Console.WriteLine("5. Delete entry by ID");
             Console.WriteLine("6. Exit entry");
+            Console.WriteLine();
         }
 
         private void Input()
         {
-            var operation = -1;
+            int operation;
+
             do
             {
                 ShowMenu();
+
                 operation = int.Parse(Console.ReadLine());
+
                 switch (operation)
                 {
                     case 1:
@@ -58,104 +57,177 @@ namespace SportShopConsole.Presentation
                     default:
                         break;
                 }
-                Console.WriteLine("Press any key..."); Console.ReadKey(); Console.Clear();
+
+                Console.WriteLine("Press any key...");
+                Console.ReadKey();
+                Console.Clear();
+
             } while (operation != closeOperationId);
         }
 
         private void ListAll()
         {
-            /*
             Console.WriteLine(new string('-', 40));
-            Console.WriteLine(new string(' ', 18) + "PRODUCTS");
+            Console.WriteLine(new string(' ', 18) + "USERS");
             Console.WriteLine(new string('-', 40));
-            var products = userBusiness.GetAll();
-            foreach (var item in products)
-            {
-                Console.WriteLine($"{item.Id} {item.Name} {item.Price} {item.Stock}");
-            }
-            */
 
+            List<User> users = userBusiness.GetAll();
+
+            foreach (User user in users)
+            {
+                Console.WriteLine(user.ToString());
+            }
         }
 
         private void Add()
         {
-            /*
-            User product = new User();
-            Console.Write("Name: ");
-            product.Name = Console.ReadLine();
-            Console.Write("Price: ");
-            product.Price = decimal.Parse(Console.ReadLine());
-            Console.Write("Stock: ");
-            product.Stock = int.Parse(Console.ReadLine());
-            userBusiness.Add(product);
-            Console.WriteLine("The product has been added!");
-            */
+            User user = new();
+
+            Console.Write("FirstName: ");
+            user.FirstName = Console.ReadLine();
+
+            Console.Write("LastName: ");
+            user.LastName = Console.ReadLine();
+
+            Console.Write("Email: ");
+            user.Email = Console.ReadLine();
+
+            Console.Write("Phone: ");
+            user.Phone = Console.ReadLine();
+
+            Console.Write("Address: ");
+            user.Address = Console.ReadLine();
+
+            Console.Write("City: ");
+            user.City = Console.ReadLine();
+
+            Console.Write("Region: ");
+            user.Region = Console.ReadLine();
+
+            Console.Write("PostalCode: ");
+            user.PostalCode = Console.ReadLine();
+
+            Console.Write("Country: ");
+            user.Country = Console.ReadLine();
+
+            Console.Write("IsEmailConfirmed: ");
+            user.IsEmailConfirmed = bool.Parse(Console.ReadLine());
+
+            Console.Write("RegistrationDate: ");
+            user.RegistrationDate = DateTime.Parse(Console.ReadLine());
+
+            Console.Write("LastLoginDate: ");
+            user.LastLoginDate = DateTime.Parse(Console.ReadLine());
+
+            userBusiness.Add(user);
+
+            Console.WriteLine("The user has been added!");
         }
 
         private void Update()
         {
-            /*
             Console.Write("Id: ");
             int id = int.Parse(Console.ReadLine());
-            User product = userBusiness.Get(id);
-            if (product != null)
+
+            User user = userBusiness.GetByID(id);
+
+            if (user is null)
             {
-                Console.WriteLine($"{product.Id} {product.Name} {product.Price} {product.Stock}");
-                Console.Write("Name: ");
-                product.Name = Console.ReadLine();
-                Console.Write("Price: ");
-                product.Price = decimal.Parse(Console.ReadLine());
-                Console.Write("Stock: ");
-                product.Stock = int.Parse(Console.ReadLine());
-                userBusiness.Update(product);
-                Console.WriteLine("The product has been updated!");
+                Console.WriteLine("User not found!");
+
+                return;
             }
-            else
-            {
-                Console.WriteLine("Product not found!");
-            }
-            */
+
+            Console.WriteLine(user.ToString());
+
+            Console.Write("FirstName: ");
+            user.FirstName = Console.ReadLine();
+
+            Console.Write("LastName: ");
+            user.LastName = Console.ReadLine();
+
+            Console.Write("Email: ");
+            user.Email = Console.ReadLine();
+
+            Console.Write("Phone: ");
+            user.Phone = Console.ReadLine();
+
+            Console.Write("Address: ");
+            user.Address = Console.ReadLine();
+
+            Console.Write("City: ");
+            user.City = Console.ReadLine();
+
+            Console.Write("Region: ");
+            user.Region = Console.ReadLine();
+
+            Console.Write("PostalCode: ");
+            user.PostalCode = Console.ReadLine();
+
+            Console.Write("Country: ");
+            user.Country = Console.ReadLine();
+
+            Console.Write("IsEmailConfirmed: ");
+            user.IsEmailConfirmed = bool.Parse(Console.ReadLine());
+
+            Console.Write("RegistrationDate: ");
+            user.RegistrationDate = DateTime.Parse(Console.ReadLine());
+
+            Console.Write("LastLoginDate: ");
+            user.LastLoginDate = DateTime.Parse(Console.ReadLine());
+
+            userBusiness.Update(user);
+
+            Console.WriteLine("The user has been updated!");
         }
 
         private void Fetch()
         {
-
-            /*
             Console.Write("Id: ");
             int id = int.Parse(Console.ReadLine());
-            User product = userBusiness.Get(id);
-            if (product != null)
-            {
-                Console.WriteLine(new string('-', 40));
-                Console.WriteLine("ID: " + product.Id);
-                Console.WriteLine("Name: " + product.Name);
-                Console.WriteLine("Price: " + product.Price);
-                Console.WriteLine("Stock: " + product.Stock);
-                Console.WriteLine(new string('-', 40));
-            }
-            else
+
+            User user = userBusiness.GetByID(id);
+
+            if (user is null)
             {
                 Console.WriteLine("Product not found!");
+
+                return;
             }
-            */
+
+            Console.WriteLine(new string('-', 40));
+            Console.WriteLine("ID: " + user.Id);
+            Console.WriteLine("FirstName: " + user.FirstName);
+            Console.WriteLine("LastName: " + user.LastName);
+            Console.WriteLine("Email: " + user.Email);
+            Console.WriteLine("Phone: " + user.Phone);
+            Console.WriteLine("Address: " + user.Address);
+            Console.WriteLine("City: " + user.City);
+            Console.WriteLine("Region: " + user.Region);
+            Console.WriteLine("PostalCode: " + user.PostalCode);
+            Console.WriteLine("Country: " + user.Country);
+            Console.WriteLine("IsEmailConfirmed: " + user.IsEmailConfirmed);
+            Console.WriteLine("RegisterDate: " + user.RegistrationDate);
+            Console.WriteLine("LastLoginDate: " + user.LastLoginDate);
+            Console.WriteLine(new string('-', 40));
         }
 
         private void Delete()
         {
-            /*
             Console.Write("Id: ");
             int id = int.Parse(Console.ReadLine());
-            User product = userBusiness.Get(id);
-            if (product != null)
-            {
-                userBusiness.Delete(id);
-                Console.WriteLine("The product has been deleted!");
-            }
-            else
+
+            User user = userBusiness.GetByID(id);
+
+            if (user is null)
             {
                 Console.WriteLine("Product not found!");
+
+                return;
             }
-            */
+
+            userBusiness.Delete(id);
+            Console.WriteLine("The product has been deleted!");
         }
     }
 }
