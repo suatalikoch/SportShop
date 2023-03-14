@@ -4,7 +4,7 @@ using System;
 
 namespace SportShop.Commands
 {
-    internal class NavigateCommand<TViewModel> : ViewModelCommand
+    internal class NavigateCommand<TViewModel> : RelayCommand
         where TViewModel : BaseViewModel
     {
         private readonly Func<TViewModel> _createViewModel;

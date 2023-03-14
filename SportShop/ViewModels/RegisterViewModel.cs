@@ -29,7 +29,7 @@ namespace SportShop.ViewModels
         public RegisterViewModel()
         {
             NavigateLoginCommand = new NavigateCommand<LoginViewModel>(() => new LoginViewModel());
-            RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand);
+            RegisterCommand = new RelayCommand(ExecuteRegisterCommand);
         }
 
         private void RegisterUser()
@@ -72,6 +72,11 @@ namespace SportShop.ViewModels
 
         private void SendConfirmationEmail()
         {
+            if (FirstName is null || LastName is null || Email is null)
+            {
+                return;
+            }
+
             var email = new MimeMessage();
 
             int code = new Random().Next(100000, 1000000);

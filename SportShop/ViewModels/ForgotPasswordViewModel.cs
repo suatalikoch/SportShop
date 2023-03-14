@@ -16,7 +16,7 @@ namespace SportShop.ViewModels
 
         public ForgotPasswordViewModel()
         {
-            RecoverPasswordCommand = new ViewModelCommand(ExecuteRecoverPasswordCommand, CanExecuteRecoverPasswordCommand);
+            RecoverPasswordCommand = new RelayCommand(ExecuteRecoverPasswordCommand, CanExecuteRecoverPasswordCommand);
             NavigateBackCommand = new NavigateCommand<LoginViewModel>(() => new LoginViewModel());
         }
 
