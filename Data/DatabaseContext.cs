@@ -1,6 +1,5 @@
 ﻿using Data.Models;
 using Microsoft.EntityFrameworkCore;
-using SportShop.Models;
 
 namespace Data
 {

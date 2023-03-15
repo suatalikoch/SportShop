@@ -1,5 +1,5 @@
 ﻿using Data;
-using SportShop.Models;
+using Data.Models;
 
 namespace Business
 {

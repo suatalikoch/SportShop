@@ -74,6 +74,12 @@
                     <DataTemplate DataType="{x:Type viewModel:AccountViewModel}">
                         <local:AccountPage/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:FavouriteViewModel}">
+                        <local:FavouritePage/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:CartViewModel}">
+                        <local:CartPage/>
+                    </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>
         </Grid>

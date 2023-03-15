@@ -1,7 +1,6 @@
 ﻿using Business;
 using Microsoft.EntityFrameworkCore;
 using SportShop.Commands;
-using SportShop.Models;
 using SportShop.Stores;
 using System.Windows;
 using System.Windows.Input;
@@ -10,6 +9,7 @@ using MailKit.Net.Smtp;
 using MailKit;
 using MimeKit;
 using System;
+using Data.Models;
 
 namespace SportShop.ViewModels
 {

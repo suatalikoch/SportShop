@@ -1,10 +1,8 @@
-﻿using Data.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SportShop.Models
+namespace Data.Models
 {
     [Index(nameof(Email), IsUnique = true)]
     public class User

@@ -18,6 +18,5 @@ namespace Data.Models
 
         [ForeignKey(nameof(Subcategory))]
         public int SubCategoriaId { get; set; }
-
     }
 }
