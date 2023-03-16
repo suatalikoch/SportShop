@@ -25,22 +25,21 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="32"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="24"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="24"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="32"/>
             </Grid.ColumnDefinitions>
             <TextBlock
                 Grid.Column="0"
                 Text="SportShop"
-                FontSize="16"
+                FontSize="18"
                 Padding="32 0 0 0"
                 FontWeight="SemiBold"
                 VerticalAlignment="Center"/>
             <RadioButton
                 Grid.Column="2"
                 Content="MEN"
+                IsChecked="True"
                 Style="{StaticResource CategoryRadioButton}"/>
             <RadioButton
                 Grid.Column="4"
@@ -59,38 +58,38 @@
             </TextBox>
             <Button
                 Grid.Column="8"
-                VerticalAlignment="Center"
+                Padding="14 0"
+                VerticalAlignment="Stretch"
                 Background="Transparent"
                 BorderThickness="0"
+                Cursor="Hand"
                 Command="{Binding NavigateAccountCommand}">
                 <fa:ImageAwesome
                     Icon="User"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center" 
+                    Width="18"/>
+            </Button>
+            <Button
+                Grid.Column="9"
+                Padding="14 0"
+                VerticalAlignment="Stretch"
+                Background="Transparent"
+                BorderThickness="0"
+                Cursor="Hand"
+                Command="{Binding NavigateFavouriteCommand}">
+                <fa:ImageAwesome
+                    Icon="Heart"
                     Width="18"/>
             </Button>
             <Button
                 Grid.Column="10"
-                VerticalAlignment="Center"
+                Padding="14 0"
+                VerticalAlignment="Stretch"
                 Background="Transparent"
                 BorderThickness="0"
-                Command="{Binding NavigateFavouriteCommand}">
-                <fa:ImageAwesome
-                    Icon="Heart"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center" 
-                    Width="18"/>
-            </Button>
-            <Button
-                Grid.Column="12"
-                VerticalAlignment="Center"
-                Background="Transparent"
-                BorderThickness="0"
+                Cursor="Hand"
                 Command="{Binding NavigateCartCommand}">
                 <fa:ImageAwesome
                     Icon="ShoppingBag"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center" 
                     Width="18"/>
             </Button>
         </Grid>
@@ -106,11 +105,14 @@
                             <Border
                                 Width="300"
                                 MaxHeight="500"
-                                Padding="16"
                                 Margin="0 0 16 16"
-                                BorderBrush="Black"
-                                BorderThickness="0.5"
                                 SnapsToDevicePixels="True">
+                            <Button
+                                Background="Transparent"
+                                Cursor="Hand"
+                                Padding="16"
+                                BorderBrush="Black"
+                                BorderThickness="0.5">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
@@ -139,7 +141,8 @@
                                         FontSize="16"
                                         Text="{Binding Price, StringFormat={}{0:C}}"/>
                                 </Grid>
-                            </Border>
+                            </Button>
+                        </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>

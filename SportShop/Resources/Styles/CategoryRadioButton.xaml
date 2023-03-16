@@ -10,11 +10,11 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Border
                             x:Name="ButtonBorder"
-                            Background="Black"
                             BorderBrush="Black"
                             BorderThickness="1"
                             Padding="16 0"
                             CornerRadius="8"
+                            Cursor="Hand"
                             Margin="0 8">
                             <Grid>
                                 <TextBlock
@@ -22,14 +22,17 @@
                                     Text="{TemplateBinding Property=Content}"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    Foreground="White"
                                     FontWeight="SemiBold"/>
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" TargetName="ButtonBorder" Value="White"/>
-                                <Setter Property="Foreground" TargetName="ButtonText" Value="Black"/>
+                                <Setter Property="Background" TargetName="ButtonBorder" Value="Black"/>
+                                <Setter Property="Foreground" TargetName="ButtonText" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" TargetName="ButtonBorder" Value="Black"/>
+                                <Setter Property="Foreground" TargetName="ButtonText" Value="White"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

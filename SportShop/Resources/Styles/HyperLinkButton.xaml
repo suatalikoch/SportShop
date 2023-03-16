@@ -10,7 +10,8 @@
                     <ControlTemplate TargetType="Button">
                         <Border
                             x:Name="ButtonBorder"
-                            Background="Transparent">
+                            Background="Transparent"
+                            Cursor="Hand">
                             <Grid>
                                 <TextBlock
                                     Text="{TemplateBinding Property=Content}"

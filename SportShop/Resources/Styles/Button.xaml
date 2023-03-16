@@ -11,7 +11,8 @@
                         <Border
                             x:Name="ButtonBorder"
                             Background="Black"
-                            CornerRadius="4">
+                            CornerRadius="4"
+                            Cursor="Hand">
                             <Grid>
                                 <TextBlock
                                     Text="{TemplateBinding Property=Content}"

@@ -48,57 +48,27 @@
         <TextBox
             Grid.Row="3"
             Width="120"
-            FontSize="18"
             Text="XXX-XXX"
-            Foreground="Gray" 
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"            
-            VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"/>
+            Foreground="Gray"
+            HorizontalContentAlignment="Center"
+            Style="{StaticResource TextBox}"/>
         <Button
             Grid.Row="5"
-            Content="VERIFY"
-            FontSize="16"          
-            FontWeight="Bold"        
+            Content="VERIFY"      
             Command="{Binding NavigateHomeCommand}"
-            Background="Black"
-            Foreground="White"
-            BorderBrush="Black" Grid.ColumnSpan="2">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="4"/>
-                </Style>
-            </Button.Resources>
-        </Button>
+            Style="{StaticResource Button}"
+            Grid.ColumnSpan="2"/>
         <Button
             Grid.Row="7"
-            Content="RESEND"
-            FontSize="16"           
-            FontWeight="Bold"        
+            Content="RESEND"      
             Command="{Binding NavigateHomeCommand}"
-            Background="SlateGray"
-            Foreground="White"
-            BorderBrush="Black" Grid.ColumnSpan="2">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="4"/>
-                </Style>
-            </Button.Resources>
-        </Button>
+            Style="{StaticResource Button}"
+            Grid.ColumnSpan="2"/>
         <Button
             Grid.Row="9"
-            Content="REGISTER"
-            FontSize="16"           
-            FontWeight="Bold"        
+            Content="REGISTER"     
             Command="{Binding NavigateRegisterCommand}"
-            Background="SlateGray"
-            Foreground="White"
-            BorderBrush="Black" Grid.ColumnSpan="2">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="4"/>
-                </Style>
-            </Button.Resources>
-        </Button>
+            Style="{StaticResource Button}"
+            Grid.ColumnSpan="2"/>
     </Grid>
 </UserControl>
