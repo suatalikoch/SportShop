@@ -41,19 +41,15 @@
             <RadioButton
                 Grid.Column="2"
                 Content="MEN"
-                Padding="8 0"
-                FontWeight="SemiBold"
-                VerticalAlignment="Center"/>
+                Style="{StaticResource CategoryRadioButton}"/>
             <RadioButton
                 Grid.Column="4"
                 Content="WOMEN"
-                Padding="8 0"
-                FontWeight="SemiBold"
-                VerticalAlignment="Center"/>
+                Style="{StaticResource CategoryRadioButton}"/>
             <TextBox
                 Grid.Column="6"
                 Width="200"
-                VerticalContentAlignment="Center">
+                Style="{StaticResource SearchBox}">
                 <TextBox.Text>
                     <Binding
                         Path="searchText"
@@ -98,58 +94,60 @@
                     Width="18"/>
             </Button>
         </Grid>
-        <ItemsControl
-            Grid.Row="1"
-            Margin="0 16 0 0"
-            MaxWidth="1280"
-            HorizontalAlignment="Center"
-            ItemsSource="{Binding Products}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border
-                        Width="300"
-                        MaxHeight="500"
-                        Padding="16"
-                        Margin="0 0 16 16"
-                        BorderBrush="Black"
-                        BorderThickness="0.5"
-                        SnapsToDevicePixels="True">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Image
-                                Grid.Row="0"
-                                Width="260"
-                                Source="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2e12131a-0133-48ad-97e0-dc2b2a4f4567/air-jordan-7-retro-se-shoes-2CqJ84.png"/>
-                            <TextBlock
-                                Grid.Row="1"
-                                Margin="0 16 0 0"
-                                FontSize="18"
-                                FontWeight="SemiBold"
-                                Text="{Binding Name}"/>
-                            <TextBlock
-                                Grid.Row="2"
-                                FontSize="14"
-                                TextWrapping="Wrap"
-                                Text="{Binding Description}"/>
-                            <TextBlock
-                                Grid.Row="3"
-                                Margin="0 16 0 0"
-                                FontSize="16"
-                                Text="{Binding Price, StringFormat={}{0:C}}"/>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
+        <ScrollViewer
+            Grid.Row="1">
+            <ItemsControl
+                Margin="0 16 0 0"
+                MaxWidth="1280"
+                HorizontalAlignment="Center"
+                ItemsSource="{Binding Products}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Width="300"
+                                MaxHeight="500"
+                                Padding="16"
+                                Margin="0 0 16 16"
+                                BorderBrush="Black"
+                                BorderThickness="0.5"
+                                SnapsToDevicePixels="True">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image
+                                        Grid.Row="0"
+                                        Width="260"
+                                        Source="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2e12131a-0133-48ad-97e0-dc2b2a4f4567/air-jordan-7-retro-se-shoes-2CqJ84.png"/>
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Margin="0 16 0 0"
+                                        FontSize="18"
+                                        FontWeight="SemiBold"
+                                        Text="{Binding Name}"/>
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        FontSize="14"
+                                        TextWrapping="Wrap"
+                                        Text="{Binding Description}"/>
+                                    <TextBlock
+                                        Grid.Row="3"
+                                        Margin="0 16 0 0"
+                                        FontSize="16"
+                                        Text="{Binding Price, StringFormat={}{0:C}}"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>
