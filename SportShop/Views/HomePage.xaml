@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SportShop.Views"
+             xmlns:viewModel="clr-namespace:SportShop.ViewModels"
              xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
              mc:Ignorable="d"
              d:DesignHeight="720"
@@ -29,13 +30,16 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="32"/>
             </Grid.ColumnDefinitions>
-            <TextBlock
+            <Button
                 Grid.Column="0"
-                Text="SportShop"
+                Content="SportShop"
                 FontSize="18"
-                Padding="32 0 0 0"
+                Margin="32 0 0 0"
+                Background="Transparent"
+                BorderThickness="0"
                 FontWeight="SemiBold"
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Center"
+                Command="{Binding NavigateProductsCommand}"/>
             <RadioButton
                 Grid.Column="2"
                 Content="MEN"
@@ -93,64 +97,23 @@
                     Width="18"/>
             </Button>
         </Grid>
-        <ScrollViewer
-            Grid.Row="1">
-            <ItemsControl
-                Margin="0 16 0 0"
-                MaxWidth="1280"
-                HorizontalAlignment="Center"
-                ItemsSource="{Binding Products}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border
-                                Width="300"
-                                MaxHeight="500"
-                                Margin="0 0 16 16"
-                                SnapsToDevicePixels="True">
-                            <Button
-                                Background="Transparent"
-                                Cursor="Hand"
-                                Padding="16"
-                                BorderBrush="Black"
-                                BorderThickness="0.5">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Image
-                                        Grid.Row="0"
-                                        Width="260"
-                                        Source="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2e12131a-0133-48ad-97e0-dc2b2a4f4567/air-jordan-7-retro-se-shoes-2CqJ84.png"/>
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Margin="0 16 0 0"
-                                        FontSize="18"
-                                        FontWeight="SemiBold"
-                                        Text="{Binding Name}"/>
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        FontSize="14"
-                                        TextWrapping="Wrap"
-                                        Text="{Binding Description}"/>
-                                    <TextBlock
-                                        Grid.Row="3"
-                                        Margin="0 16 0 0"
-                                        FontSize="16"
-                                        Text="{Binding Price, StringFormat={}{0:C}}"/>
-                                </Grid>
-                            </Button>
-                        </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-        </ScrollViewer>
+        <ContentControl
+            Grid.Row="1"
+            Content="{Binding CurrentViewModel}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type viewModel:ProductsViewModel}">
+                    <local:ProductsPage/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:AccountViewModel}">
+                    <local:AccountPage/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:FavouriteViewModel}">
+                    <local:FavouritePage/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:CartViewModel}">
+                    <local:CartPage/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
     </Grid>
 </UserControl>

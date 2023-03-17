@@ -26,9 +26,13 @@ namespace SportShop.ViewModels
         public ICommand NavigateLoginCommand { get; }
         public ICommand RegisterCommand { get; }
 
-        public RegisterViewModel()
+        private NavigationStore _navigationStore;
+
+        public RegisterViewModel(NavigationStore navigationStore)
         {
-            NavigateLoginCommand = new NavigateCommand<LoginViewModel>(() => new LoginViewModel());
+            _navigationStore = navigationStore;
+
+            NavigateLoginCommand = new NavigateCommand<LoginViewModel>(navigationStore, () => new LoginViewModel(navigationStore));
             RegisterCommand = new RelayCommand(ExecuteRegisterCommand);
         }
 
@@ -67,7 +71,7 @@ namespace SportShop.ViewModels
                 return;
             }
 
-            NavigationStore.CurrentViewModel = new EmailConfirmationViewModel();
+            _navigationStore.CurrentViewModel = new EmailConfirmationViewModel(_navigationStore);
         }
 
         private void SendConfirmationEmail()

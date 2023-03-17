@@ -1,6 +1,7 @@
 ﻿using Business;
 using Data.Models;
 using SportShop.Commands;
+using SportShop.Stores;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -12,18 +13,21 @@ namespace SportShop.ViewModels
         public ICommand NavigateAccountCommand { get; }
         public ICommand NavigateFavouriteCommand { get; }
         public ICommand NavigateCartCommand { get; }
+        public ICommand NavigateProductsCommand { get; }
 
-        private readonly ObservableCollection<Product> _products;
+        private NavigationStore _navigationStoreInner;
 
-        public IEnumerable<Product> Products => _products;
-
-        public HomeViewModel()
+        public HomeViewModel(NavigationStore navigationStore)
         {
-            NavigateAccountCommand = new NavigateCommand<AccountViewModel>(() => new AccountViewModel());
-            NavigateFavouriteCommand = new NavigateCommand<FavouriteViewModel>(() => new FavouriteViewModel());
-            NavigateCartCommand = new NavigateCommand<CartViewModel>(() => new CartViewModel());
+            _navigationStoreInner = new NavigationStore();
+            _navigationStoreInner.CurrentViewModel = new ProductsViewModel();
 
-            _products = new ObservableCollection<Product>(new ProductBusiness().GetAll());
+            NavigateAccountCommand = new NavigateCommand<AccountViewModel>(_navigationStoreInner, () => new AccountViewModel(navigationStore));
+            NavigateFavouriteCommand = new NavigateCommand<FavouriteViewModel>(_navigationStoreInner, () => new FavouriteViewModel());
+            NavigateCartCommand = new NavigateCommand<CartViewModel>(_navigationStoreInner, () => new CartViewModel());
+            NavigateProductsCommand = new NavigateCommand<ProductsViewModel>(_navigationStoreInner, () => new ProductsViewModel());
         }
+
+        public BaseViewModel CurrentViewModel => _navigationStoreInner.CurrentViewModel;
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Business;
-using SportShop.Models;
+using Data.Models;
 
 namespace SportShopConsole.Presentation
 {

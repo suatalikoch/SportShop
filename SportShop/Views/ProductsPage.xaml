@@ -1,86 +1,70 @@
-﻿<UserControl x:Class="SportShop.Views.FavouritePage"
+﻿<UserControl x:Class="SportShop.Views.ProductsPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SportShop.Views"
-            xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
-             mc:Ignorable="d"
-             d:DesignHeight="720"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" 
              d:DesignWidth="1280"
              Background="White">
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBlock
-            Background="White"
-            Grid.Row="0"
-            Text="Favourites"
-            FontSize="28"
-            Padding="32 0 0 0"
-            FontWeight="Bold"
-            VerticalAlignment="Center"/>
-        <ScrollViewer
+    <ScrollViewer
             Grid.Row="1">
-            <ItemsControl
+        <ItemsControl
                 Margin="0 16 0 0"
                 MaxWidth="1280"
                 HorizontalAlignment="Center"
                 ItemsSource="{Binding Products}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border
                                 Width="300"
                                 MaxHeight="500"
                                 Margin="0 0 16 16"
                                 SnapsToDevicePixels="True">
-                            <Button
-                                Background="Gray"
+                        <Button
+                                Background="Transparent"
                                 Cursor="Hand"
                                 Padding="16"
                                 BorderBrush="Black"
                                 BorderThickness="0.5">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Image
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Image
                                         Grid.Row="0"
                                         Width="260"
                                         Source="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2e12131a-0133-48ad-97e0-dc2b2a4f4567/air-jordan-7-retro-se-shoes-2CqJ84.png"/>
-                                    <TextBlock
+                                <TextBlock
                                         Grid.Row="1"
                                         Margin="0 16 0 0"
                                         FontSize="18"
                                         FontWeight="SemiBold"
                                         Text="{Binding Name}"/>
-                                    <TextBlock
+                                <TextBlock
                                         Grid.Row="2"
                                         FontSize="14"
                                         TextWrapping="Wrap"
                                         Text="{Binding Description}"/>
-                                    <TextBlock
+                                <TextBlock
                                         Grid.Row="3"
                                         Margin="0 16 0 0"
                                         FontSize="16"
                                         Text="{Binding Price, StringFormat={}{0:C}}"/>
-                                </Grid>
-                            </Button>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </ScrollViewer>
-    </Grid>
+                            </Grid>
+                        </Button>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </ScrollViewer>
 </UserControl>
