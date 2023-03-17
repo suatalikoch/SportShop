@@ -24,5 +24,10 @@ namespace SportShop.Views
         {
             InitializeComponent();
         }
+
+        private void ImageAwesome_TextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
     }
 }
