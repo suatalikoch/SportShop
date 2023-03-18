@@ -1,46 +1,51 @@
-﻿using Data;
-using Data.Models;
+﻿using Data.Models;
+using Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Business
 {
-    public class ProductBusiness
+    public class CategoryBusiness
     {
         private DatabaseContext? dbcontext;
 
-        public List<Product> GetAll()
+        public List<Category> GetAll()
         {
             using (dbcontext = new DatabaseContext())
             {
-                return dbcontext.Products.ToList();
-            }
-        }
-        
-        public Product GetByID(int id)
-        {
-            using (dbcontext = new DatabaseContext())
-            {
-                return dbcontext.Products.Find(id);
+                return dbcontext.Categories.ToList();
             }
         }
 
-        public void Add(Product product)
+        public Category GetByID(int id)
         {
             using (dbcontext = new DatabaseContext())
             {
-                dbcontext.Products.Add(product);
+                return dbcontext.Categories.Find(id);
+            }
+        }
+
+        public void Add(Category category)
+        {
+            using (dbcontext = new DatabaseContext())
+            {
+                dbcontext.Categories.Add(category);
                 dbcontext.SaveChanges();
             }
         }
 
-        public void Update(Product product)
+        public void Update(Category category)
         {
             using (dbcontext = new DatabaseContext())
             {
-                var item = dbcontext.Products.Find(product.Id);
+                var item = dbcontext.Categories.Find(category.Id);
 
                 if (item != null)
                 {
-                    dbcontext.Entry(item).CurrentValues.SetValues(product);
+                    dbcontext.Entry(item).CurrentValues.SetValues(category);
                     dbcontext.SaveChanges();
                 }
             }
@@ -50,11 +55,11 @@ namespace Business
         {
             using (dbcontext = new DatabaseContext())
             {
-                var item = dbcontext.Products.Find(id);
+                var item = dbcontext.Categories.Find(id);
 
                 if (item != null)
                 {
-                    dbcontext.Products.Remove(item);
+                    dbcontext.Categories.Remove(item);
                     dbcontext.SaveChanges();
                 }
             }
