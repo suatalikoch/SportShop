@@ -9,7 +9,6 @@
              d:DesignHeight="720" d:DesignWidth="1280"
              Background="White">
     <Grid>
-
         <Button
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
@@ -108,6 +107,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 BorderThickness="0"
+                Command="{Binding NavigateEditPasswordCommand}"
                 Style="{StaticResource HyperLinkButton}"
                 Margin="704,223,0,0"/>
             <TextBlock
