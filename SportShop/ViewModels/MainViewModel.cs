@@ -14,9 +14,13 @@ namespace SportShop.ViewModels
         public ICommand MaximizeCommand { get; }
         public ICommand CloseCommand { get; }
 
-        public MainViewModel()
+        private NavigationStore _navigationStore;
+
+        public MainViewModel(NavigationStore navigationStore)
         {
-            NavigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+            _navigationStore = navigationStore;
+
+            navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
             MinimizeCommand = new RelayCommand(ExecuteMinimizeCommand);
             MaximizeCommand = new RelayCommand(ExecuteMaximizeCommand);
             CloseCommand = new RelayCommand(ExecuteCloseCommand);
@@ -24,6 +28,7 @@ namespace SportShop.ViewModels
             BorderColor = Color.Black;
             MaximizeContent = "\xE739";
             OnPropertyChanged(nameof(MaximizeContent));
+            _navigationStore = navigationStore;
         }
 
         private void ExecuteMinimizeCommand(object obj)
@@ -65,6 +70,6 @@ namespace SportShop.ViewModels
             OnPropertyChanged(nameof(CurrentViewModel));
         }
 
-        public BaseViewModel CurrentViewModel => NavigationStore.CurrentViewModel; 
+        public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel; 
     }
 }

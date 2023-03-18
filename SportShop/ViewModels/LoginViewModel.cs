@@ -16,11 +16,15 @@ namespace SportShop.ViewModels
         public ICommand LoginCommand { get; }
         public ICommand NavigateForgotPasswordCommand { get; }
 
-        public LoginViewModel()
+        private NavigationStore _navigationStore;
+
+        public LoginViewModel(NavigationStore navigationStore)
         {
+            _navigationStore = navigationStore;
+
             LoginCommand = new RelayCommand(ExecuteLoginCommand);
-            NavigateForgotPasswordCommand = new NavigateCommand<ForgotPasswordViewModel>(() => new ForgotPasswordViewModel());
-            NavigateRegisterCommand = new NavigateCommand<RegisterViewModel>(() => new RegisterViewModel());
+            NavigateForgotPasswordCommand = new NavigateCommand<ForgotPasswordViewModel>(navigationStore, () => new ForgotPasswordViewModel(navigationStore));
+            NavigateRegisterCommand = new NavigateCommand<RegisterViewModel>(navigationStore, () => new RegisterViewModel(navigationStore));            
         }
 
         private bool CheckCredentials()
@@ -50,7 +54,7 @@ namespace SportShop.ViewModels
         {
             if (CheckCredentials())
             {
-                NavigationStore.CurrentViewModel = new HomeViewModel();
+                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore);
             }
         }
 

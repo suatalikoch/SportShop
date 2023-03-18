@@ -25,7 +25,7 @@ namespace Business
 
         public User? GetByEmail(string email)
         {
-            using (dbcontext = new DatabaseContext())
+            using (dbcontext = new DatabaseContext())   
             {
                 if (dbcontext.Users.Any(x => x.Email.Equals(email)))
                 {

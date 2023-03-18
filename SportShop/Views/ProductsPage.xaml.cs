@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace SportShop.Views
 {
     /// <summary>
-    /// Interaction logic for AccountPage.xaml
+    /// Interaction logic for ProductsPage.xaml
     /// </summary>
-    public partial class AccountPage : UserControl
+    public partial class ProductsPage : UserControl
     {
-        public AccountPage()
+        public ProductsPage()
         {
             InitializeComponent();
-        }
-
-        private void ImageAwesome_TextInput(object sender, TextCompositionEventArgs e)
-        {
-
         }
     }
 }

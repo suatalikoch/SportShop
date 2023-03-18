@@ -9,15 +9,18 @@ namespace SportShop.ViewModels
         public ICommand LogOutCommand { get; }
         public ICommand NavigateBackCommand { get; }
 
-        public AccountViewModel()
+        private NavigationStore _navigationStoreOuter;
+
+        public AccountViewModel(NavigationStore navigationStoreOuter)
         {
-            LogOutCommand = new RelayCommand(ExecuteLogOutCommand, CanExecuteLogOutCommand);
-            NavigateBackCommand = new NavigateCommand<HomeViewModel>(() => new HomeViewModel());
+            _navigationStoreOuter = navigationStoreOuter;
+
+            LogOutCommand = new RelayCommand(ExecuteLogOutCommand, CanExecuteLogOutCommand);            
         }
 
         private void ExecuteLogOutCommand(object obj)
         {
-            NavigationStore.CurrentViewModel = new LoginViewModel();
+            _navigationStoreOuter.CurrentViewModel = new LoginViewModel(_navigationStoreOuter);
         }
 
         private bool CanExecuteLogOutCommand(object obj)
