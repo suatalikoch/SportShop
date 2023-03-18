@@ -11,12 +11,13 @@ namespace SportShopConsole.Controllers
     internal class UserController
     {
         private readonly int closeOperationId = 6;
+
         private readonly UserBusiness userBusiness = new();
 
         private void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
-            Console.WriteLine(new string(' ', 18) + "MENU");
+            Console.WriteLine(new string(' ', 18) + "USER MENU");
             Console.WriteLine(new string('-', 40));
             Console.WriteLine("1. List all entries");
             Console.WriteLine("2. Add new entry");
@@ -27,7 +28,7 @@ namespace SportShopConsole.Controllers
             Console.WriteLine();
         }
 
-        private void Input()
+        internal void Input()
         {
             int operation;
 
@@ -40,19 +41,19 @@ namespace SportShopConsole.Controllers
                 switch (operation)
                 {
                     case 1:
-                        ListAllUsers();
+                        ListAll();
                         break;
                     case 2:
-                        AddUser();
+                        Add();
                         break;
                     case 3:
-                        UpdateUser();
+                        Update();
                         break;
                     case 4:
-                        FetchUser();
+                        Fetch();
                         break;
                     case 5:
-                        DeleteUser();
+                        Delete();
                         break;
                     default:
                         break;
@@ -65,7 +66,7 @@ namespace SportShopConsole.Controllers
             } while (operation != closeOperationId);
         }
 
-        private void ListAllUsers()
+        private void ListAll()
         {
             Console.WriteLine(new string('-', 40));
             Console.WriteLine(new string(' ', 18) + "USERS");
@@ -79,7 +80,7 @@ namespace SportShopConsole.Controllers
             }
         }
 
-        private void AddUser()
+        private void Add()
         {
             User user = new();
 
@@ -118,7 +119,7 @@ namespace SportShopConsole.Controllers
             Console.WriteLine("The user has been added!");
         }
 
-        private void UpdateUser()
+        private void Update()
         {
             Console.Write("Id: ");
             int id = int.Parse(Console.ReadLine());
@@ -166,7 +167,7 @@ namespace SportShopConsole.Controllers
             Console.WriteLine("The user has been updated!");
         }
 
-        private void FetchUser()
+        private void Fetch()
         {
             Console.Write("Id: ");
             int id = int.Parse(Console.ReadLine());
@@ -197,7 +198,7 @@ namespace SportShopConsole.Controllers
             Console.WriteLine(new string('-', 40));
         }
 
-        private void DeleteUser()
+        private void Delete()
         {
             Console.Write("Id: ");
             int id = int.Parse(Console.ReadLine());
@@ -207,6 +208,7 @@ namespace SportShopConsole.Controllers
             if (user is null)
             {
                 Console.WriteLine("Product not found!");
+
                 return;
             }
 

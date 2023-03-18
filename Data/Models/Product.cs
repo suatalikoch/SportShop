@@ -17,6 +17,11 @@ namespace Data.Models
         public int CategoryId { get; set; }
 
         [ForeignKey(nameof(Subcategory))]
-        public int SubCategoriaId { get; set; }
+        public int SubCategoryId { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id} {Name} {Description} {Price} {Discount} {Image} {CategoryId} {SubCategoryId}";
+        }
     }
 }

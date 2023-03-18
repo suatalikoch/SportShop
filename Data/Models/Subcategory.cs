@@ -13,5 +13,10 @@ namespace Data.Models
 
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id} {Name} {CategoryId}";
+        }
     }
 }

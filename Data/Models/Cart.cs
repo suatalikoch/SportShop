@@ -13,5 +13,10 @@ namespace Data.Models
 
         [ForeignKey(nameof(ProductId))]
         public int ProductId { get; set; }
+
+        public override string ToString()
+        {
+            return $"{UserId} {ProductId}";
+        }
     }
 }

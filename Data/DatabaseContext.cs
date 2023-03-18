@@ -5,12 +5,12 @@ namespace Data
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Subcategory> Subcategories { get; set; }
-        public DbSet<Cart> Carts { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Favourite> Favourites { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Subcategory> Subcategories { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Favourite> Favourites { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

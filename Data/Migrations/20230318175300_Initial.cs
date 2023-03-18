@@ -67,7 +67,7 @@ namespace Data.Migrations
                     Discount = table.Column<double>(type: "double", nullable: false),
                     Image = table.Column<string>(type: "longtext", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    SubCategoriaId = table.Column<int>(type: "int", nullable: false)
+                    SubCategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
