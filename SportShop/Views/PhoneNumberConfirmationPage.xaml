@@ -1,0 +1,56 @@
+﻿<Page x:Class="SportShop.Views.PhoneNumberConfirmationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SportShop.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="PhoneNumberConfirmationPage"
+      Background="White">
+    <Grid
+        HorizontalAlignment="Center"
+        Margin="24"
+        MaxWidth="410"
+        Width="410">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*" MaxHeight="175"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="24"></RowDefinition>
+            <RowDefinition Height="24"></RowDefinition>
+            <RowDefinition Height="15"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock       
+            Grid.Row="0"
+            Text="Verify your mobile phone number."
+            FontSize="24"
+            FontWeight="Bold"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
+        <TextBlock       
+            Grid.Row="1"
+            Text="We'll send you a secure, one-time verification code."
+            FontSize="16.5"
+            FontWeight="Bold"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
+        <TextBox
+            Grid.Row="2"
+            Tag="Country/Region"
+            Width="110"
+            HorizontalAlignment="Left"
+            Grid.ColumnSpan="2"
+            Style="{StaticResource TextBox}"/>
+        <TextBox
+            Grid.Row="2"
+            Tag="Mobile Number - E.g., 2801119083*"
+            Width="290"
+            HorizontalAlignment="Right"
+            Grid.ColumnSpan="2"
+            Style="{StaticResource TextBox}"/>
+        
+    </Grid>
+</Page>

@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace SportShop.Views
 {
     /// <summary>
-    /// Interaction logic for EditPasswordPage.xaml
+    /// Interaction logic for PhoneNumberConfirmationPage.xaml
     /// </summary>
-    public partial class EditPasswordPage : Page
+    public partial class PhoneNumberConfirmationPage : Page
     {
-        public EditPasswordPage()
+        public PhoneNumberConfirmationPage()
         {
             InitializeComponent();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }
