@@ -20,9 +20,14 @@ namespace SportShop.Views
     /// </summary>
     public partial class AccountPage : UserControl
     {
+        public string[] countries { get; set; }
         public AccountPage()
         {
             InitializeComponent();
+
+            string[] countries = new string[] {"Bulgaria"};
+
+            DataContext = this;
         }
 
         private void ImageAwesome_TextInput(object sender, TextCompositionEventArgs e)
@@ -34,5 +39,6 @@ namespace SportShop.Views
         {
 
         }
+
     }
 }

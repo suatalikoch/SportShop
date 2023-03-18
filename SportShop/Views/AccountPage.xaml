@@ -145,10 +145,10 @@
                 FontWeight="Medium"
                 VerticalAlignment="Top"
                 Margin="390,368,-390,0"/>
-            <TextBox
+            <ComboBox
                 Grid.Row="0"
                 Tag="Country/Region"
-                Style="{StaticResource TextBox}"
+                ItemsSource="{Binding countries}"
                 MaxWidth="400"
                 Margin="-46,389,46,571"/>
             <TextBox
@@ -172,6 +172,7 @@
             Style="{StaticResource Button}"
             Margin="390,594,730,376"/>
         </Grid>
+        
     </Grid>
 
 
