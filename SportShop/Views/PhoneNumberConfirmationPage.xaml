@@ -18,9 +18,10 @@
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="32"></RowDefinition>
-            <RowDefinition Height="24"></RowDefinition>
-            <RowDefinition Height="24"></RowDefinition>
-            <RowDefinition Height="15"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock       
@@ -28,7 +29,7 @@
             Text="Verify your mobile phone number."
             FontSize="24"
             FontWeight="Bold"
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Left"
             VerticalAlignment="Center"/>
         <TextBlock       
             Grid.Row="1"
@@ -51,6 +52,43 @@
             HorizontalAlignment="Right"
             Grid.ColumnSpan="2"
             Style="{StaticResource TextBox}"/>
-        
+        <CheckBox
+            Grid.Row="3"
+            Content="I agree to receive one SMS message to verify my device"
+            FontWeight="Medium"
+            FontSize="14"
+            BorderThickness="3"/>
+        <Button
+            Grid.Row="4"
+            Content="Read Nike's Privacy Policy and Terms of Use."
+            Background="Transparent"
+            HorizontalAlignment="Left"
+            BorderThickness="0"
+            Command="{Binding NavigateForgotPasswordCommand}"
+            Style="{StaticResource HyperLinkButton}"/>
+        <TextBlock       
+            Grid.Row="6"
+            Text="Msg and Data rates may apply.You may experience a delay"
+            FontSize="16.5"
+            FontWeight="Bold"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
+        <TextBlock       
+            Grid.Row="7"
+            Text="if there are issues with your wireless carrier."
+            FontSize="16.5"
+            FontWeight="Bold"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
+        <Button
+            Grid.Row="8"
+            Content="Send Code"   
+            Background="SlateGray"
+            Grid.ColumnSpan="2"
+            Width="110"
+            HorizontalAlignment="Right"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Style="{StaticResource Button}"/>
     </Grid>
 </Page>
