@@ -67,8 +67,11 @@
         </Grid>
         <Grid Margin="0,0,10,0">
             <Grid.RowDefinitions>
-              
+                <RowDefinition Height="1000"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1270*"/>
+            </Grid.ColumnDefinitions>
             <TextBlock
                 Grid.Row="0"
                 Text="Account Settings"
@@ -77,13 +80,13 @@
                 HorizontalAlignment="Left"
                 Margin="390,50,0,50"/>
             <TextBox
-            Grid.Row="0"
-            Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
-            Tag="User Email"
-            Style="{StaticResource TextBox}"
-            Padding="10,0,0,0"
-            MaxWidth="400"
-            Margin="-50,89,50,591" TextChanged="TextBox_TextChanged"/>
+                Grid.Row="0"
+                Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                Tag="User Email"
+                Style="{StaticResource TextBox}"
+                Padding="10,0,0,0"
+                MaxWidth="400"
+                Margin="-45,86,45,874" TextChanged="TextBox_TextChanged"/>
             <TextBlock
                 Grid.Row="0"
                 Text="Password"
@@ -94,10 +97,75 @@
                 Padding="0,90,0,0"/>
             <TextBox
                 Grid.Row="0"
-                Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
                 Tag="User Password"
                 Style="{StaticResource TextBox}"
-                MaxWidth="400" Margin="-50,182,50,498"/>
+                MaxWidth="400"
+                Margin="-45,183,45,777"/>
+            <Button
+                Grid.Column="0"
+                Content="Edit Password"
+                Background="Transparent"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                BorderThickness="0"
+                Style="{StaticResource HyperLinkButton}"
+                Margin="704,223,0,0"/>
+            <TextBlock
+                Grid.Column="0"
+                Text="Phone Number"
+                FontSize="12"
+                FontWeight="Medium"
+                HorizontalAlignment="Left" 
+                Margin="390,249,0,-249"
+                />
+            <Button
+                Grid.Column="0"
+                Content="Add"
+                Background="Transparent"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                BorderThickness="0"
+                Style="{StaticResource HyperLinkButton}"
+                Margin="764,277,0,0"/>
+            <TextBox
+                Grid.Row="0"
+                Tag="Get user birthdate from db"
+                Style="{StaticResource TextBox}"
+                MaxWidth="400"
+                Margin="-45,301,45,659"/>
+            <TextBlock
+                Grid.Row="0"
+                Text="Location"
+                FontSize="12"
+                FontWeight="Medium"
+                VerticalAlignment="Top"
+                Margin="390,368,-390,0"/>
+            <TextBox
+                Grid.Row="0"
+                Tag="Country/Region"
+                Style="{StaticResource TextBox}"
+                MaxWidth="400"
+                Margin="-46,389,46,571"/>
+            <TextBox
+                Grid.Row="0"
+                Tag="Town/City"
+                Style="{StaticResource TextBox}"
+                MaxWidth="400"
+                Margin="-46,460,46,500"/>
+            <TextBox
+                Grid.Row="0"
+                Tag="Postcode"
+                Style="{StaticResource TextBox}"
+                MaxWidth="400"
+                Margin="-45,530,45,430"/>
+            <Button
+            Grid.Row="0"
+            Content="DELETE ACCOUNT"
+            Background="SlateGray"
+            Height="30"
+            Width="150"
+            Style="{StaticResource Button}"
+            Margin="390,594,730,376"/>
         </Grid>
     </Grid>
 
