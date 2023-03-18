@@ -14,5 +14,13 @@ namespace Business
                 return dbcontext.Products.ToList();
             }
         }
+        
+        public Product GetByID(int id)
+        {
+            using (dbcontext = new DatabaseContext())
+            {
+                return dbcontext.Products.Find(id);
+            }
+        }
     }
 }

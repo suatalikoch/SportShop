@@ -48,9 +48,6 @@ namespace Data.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime LastLoginDate { get; set; }
 
-        [ForeignKey(nameof(Cart))]
-        public int CartId { get; set; }
-
         public override string ToString()
         {
             return $"{Id} {FirstName} {LastName} {Email} {Phone} {Address} {City} {Region} {PostalCode} {Country} {IsEmailConfirmed} {RegistrationDate} {LastLoginDate}";

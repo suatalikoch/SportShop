@@ -110,14 +110,8 @@ namespace SportShopConsole.Presentation
             Console.Write("Country: ");
             user.Country = Console.ReadLine();
 
-            Console.Write("IsEmailConfirmed: ");
-            user.IsEmailConfirmed = bool.Parse(Console.ReadLine());
-
             Console.Write("RegistrationDate: ");
-            user.RegistrationDate = DateTime.Parse(Console.ReadLine());
-
-            Console.Write("LastLoginDate: ");
-            user.LastLoginDate = DateTime.Parse(Console.ReadLine());
+            user.RegistrationDate = DateTime.Now;
 
             userBusiness.Add(user);
 
@@ -166,15 +160,6 @@ namespace SportShopConsole.Presentation
 
             Console.Write("Country: ");
             user.Country = Console.ReadLine();
-
-            Console.Write("IsEmailConfirmed: ");
-            user.IsEmailConfirmed = bool.Parse(Console.ReadLine());
-
-            Console.Write("RegistrationDate: ");
-            user.RegistrationDate = DateTime.Parse(Console.ReadLine());
-
-            Console.Write("LastLoginDate: ");
-            user.LastLoginDate = DateTime.Parse(Console.ReadLine());
 
             userBusiness.Update(user);
 

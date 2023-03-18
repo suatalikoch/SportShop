@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230314205139_Initial")]
+    [Migration("20230318125259_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -24,11 +24,13 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.Cart", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "ProductId");
 
                     b.ToTable("Carts");
                 });
@@ -46,6 +48,19 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Data.Models.Favourite", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "ProductId");
+
+                    b.ToTable("Favourites");
                 });
 
             modelBuilder.Entity("Data.Models.Product", b =>
@@ -101,7 +116,7 @@ namespace Data.Migrations
                     b.ToTable("Subcategories");
                 });
 
-            modelBuilder.Entity("SportShop.Models.User", b =>
+            modelBuilder.Entity("Data.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -109,9 +124,6 @@ namespace Data.Migrations
 
                     b.Property<string>("Address")
                         .HasColumnType("longtext");
-
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
 
                     b.Property<string>("City")
                         .HasColumnType("longtext");
