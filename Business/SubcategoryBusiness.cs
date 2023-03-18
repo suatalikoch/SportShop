@@ -1,46 +1,51 @@
-﻿using Data;
-using Data.Models;
+﻿using Data.Models;
+using Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Business
 {
-    public class ProductBusiness
+    public class SubcategoryBusiness
     {
         private DatabaseContext? dbcontext;
 
-        public List<Product> GetAll()
+        public List<Subcategory> GetAll()
         {
             using (dbcontext = new DatabaseContext())
             {
-                return dbcontext.Products.ToList();
-            }
-        }
-        
-        public Product GetByID(int id)
-        {
-            using (dbcontext = new DatabaseContext())
-            {
-                return dbcontext.Products.Find(id);
+                return dbcontext.Subcategories.ToList();
             }
         }
 
-        public void Add(Product product)
+        public Subcategory GetByID(int id)
         {
             using (dbcontext = new DatabaseContext())
             {
-                dbcontext.Products.Add(product);
+                return dbcontext.Subcategories.Find(id);
+            }
+        }
+
+        public void Add(Subcategory subcategory)
+        {
+            using (dbcontext = new DatabaseContext())
+            {
+                dbcontext.Subcategories.Add(subcategory);
                 dbcontext.SaveChanges();
             }
         }
 
-        public void Update(Product product)
+        public void Update(Subcategory subcategory)
         {
             using (dbcontext = new DatabaseContext())
             {
-                var item = dbcontext.Products.Find(product.Id);
+                var item = dbcontext.Subcategories.Find(subcategory.Id);
 
                 if (item != null)
                 {
-                    dbcontext.Entry(item).CurrentValues.SetValues(product);
+                    dbcontext.Entry(item).CurrentValues.SetValues(subcategory);
                     dbcontext.SaveChanges();
                 }
             }
@@ -50,11 +55,11 @@ namespace Business
         {
             using (dbcontext = new DatabaseContext())
             {
-                var item = dbcontext.Products.Find(id);
+                var item = dbcontext.Subcategories.Find(id);
 
                 if (item != null)
                 {
-                    dbcontext.Products.Remove(item);
+                    dbcontext.Subcategories.Remove(item);
                     dbcontext.SaveChanges();
                 }
             }
