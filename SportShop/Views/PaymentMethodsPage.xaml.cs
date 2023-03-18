@@ -16,29 +16,13 @@ using System.Windows.Shapes;
 namespace SportShop.Views
 {
     /// <summary>
-    /// Interaction logic for AccountPage.xaml
+    /// Interaction logic for PaymentMethodsPage.xaml
     /// </summary>
-    public partial class AccountPage : UserControl
+    public partial class PaymentMethodsPage : Page
     {
-        public string[] countries { get; set; }
-        public AccountPage()
+        public PaymentMethodsPage()
         {
             InitializeComponent();
-
-            string[] countries = new string[] {"Bulgaria"};
-
-            DataContext = this;
         }
-
-        private void ImageAwesome_TextInput(object sender, TextCompositionEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
     }
 }

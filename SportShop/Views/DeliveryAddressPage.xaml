@@ -1,0 +1,62 @@
+﻿<Page x:Class="SportShop.Views.DeliveryAddressPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SportShop.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="720"
+      d:DesignWidth="1280"
+      Title="DeliveryAddressPage"
+      Background="White">
+    <Grid
+        HorizontalAlignment="Center"
+        Margin="24"
+        MaxWidth="410"
+        Width="410">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock       
+            Grid.Row="0"
+            Text="Saved Delivery Addresses"
+            FontSize="28"
+            FontWeight="Medium"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"/>
+        <TextBlock       
+            Grid.Row="1"
+            Text="You currently don't have any saved delivery"
+            FontSize="17"
+            FontWeight="Medium"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"/>
+        <TextBlock       
+            Grid.Row="2"
+            Text="addresses. Add an address here to be pre-filled for"
+            FontSize="17"
+            FontWeight="Medium"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"/>
+        <TextBlock       
+            Grid.Row="3"
+            Text="quicker checkout."
+            FontSize="17"
+            FontWeight="Medium"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"/>
+        <Button
+            Grid.Row="4"
+            Content="Add Address"
+            Background="SlateGray"
+            Height="30"
+            Width="130"
+            Style="{StaticResource Button}"
+            HorizontalAlignment="Right"/>
+
+    </Grid>
+</Page>

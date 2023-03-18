@@ -9,7 +9,6 @@
              d:DesignHeight="720" d:DesignWidth="1280"
              Background="White">
     <Grid>
-
         <Button
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
@@ -40,9 +39,13 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Button
-               Grid.Row="0"
-               Content="Payment Methods"/>
+            <TextBlock
+                Grid.Row="0"
+                Text="Settings"
+                FontWeight="Bold"
+                FontSize="18"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
             <Button
                Grid.Row="1"
                Content="Payment Methods"/>
@@ -86,7 +89,8 @@
                 Style="{StaticResource TextBox}"
                 Padding="10,0,0,0"
                 MaxWidth="400"
-                Margin="-45,86,45,874" TextChanged="TextBox_TextChanged"/>
+                Margin="-45,86,45,874"
+                TextChanged="TextBox_TextChanged"/>
             <TextBlock
                 Grid.Row="0"
                 Text="Password"
@@ -108,6 +112,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 BorderThickness="0"
+                Command="{Binding NavigateEditPasswordCommand}"
                 Style="{StaticResource HyperLinkButton}"
                 Margin="704,223,0,0"/>
             <TextBlock
@@ -140,10 +145,10 @@
                 FontWeight="Medium"
                 VerticalAlignment="Top"
                 Margin="390,368,-390,0"/>
-            <TextBox
+            <ComboBox
                 Grid.Row="0"
                 Tag="Country/Region"
-                Style="{StaticResource TextBox}"
+                ItemsSource="{Binding countries}"
                 MaxWidth="400"
                 Margin="-46,389,46,571"/>
             <TextBox
@@ -167,6 +172,7 @@
             Style="{StaticResource Button}"
             Margin="390,594,730,376"/>
         </Grid>
+        
     </Grid>
 
 

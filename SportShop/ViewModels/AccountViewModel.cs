@@ -8,6 +8,7 @@ namespace SportShop.ViewModels
     {
         public ICommand LogOutCommand { get; }
         public ICommand NavigateBackCommand { get; }
+        public ICommand NavigateEditPasswordCommand { get; }
 
         private NavigationStore _navigationStoreOuter;
 
@@ -15,7 +16,8 @@ namespace SportShop.ViewModels
         {
             _navigationStoreOuter = navigationStoreOuter;
 
-            LogOutCommand = new RelayCommand(ExecuteLogOutCommand, CanExecuteLogOutCommand);            
+            LogOutCommand = new RelayCommand(ExecuteLogOutCommand, CanExecuteLogOutCommand);
+            NavigateEditPasswordCommand = new NavigateCommand<EditPasswordViewModel>(_navigationStoreOuter, () => new EditPasswordViewModel()); 
         }
 
         private void ExecuteLogOutCommand(object obj)
@@ -27,5 +29,6 @@ namespace SportShop.ViewModels
         {
             return true;
         }
+
     }
 }
