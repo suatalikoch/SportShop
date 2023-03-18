@@ -65,17 +65,17 @@
                 Grid.Row="7"
                 Content="Linked Accounts"/>
         </Grid>
-        <Grid>
+        <Grid Margin="0,0,10,0">
             <Grid.RowDefinitions>
               
             </Grid.RowDefinitions>
             <TextBlock
+                Grid.Row="0"
                 Text="Account Settings"
                 FontWeight="Medium"
                 FontSize="18"
                 HorizontalAlignment="Left"
-                Margin="50"
-                Grid.Row="0"/>
+                Margin="390,50,0,50"/>
             <TextBox
             Grid.Row="0"
             Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
@@ -83,12 +83,12 @@
             Style="{StaticResource TextBox}"
             Padding="10,0,0,0"
             MaxWidth="400"
-            Margin="-50,93,50,317"/>
+            Margin="-50,89,50,591" TextChanged="TextBox_TextChanged"/>
             <TextBlock
                 Grid.Row="0"
                 Text="Password"
                 HorizontalAlignment="Left"
-                Margin="50"
+                Margin="390,56,0,44"
                 FontWeight="Medium"
                 FontSize="12"
                 Padding="0,90,0,0"/>
@@ -97,8 +97,7 @@
                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
                 Tag="User Password"
                 Style="{StaticResource TextBox}"
-                MaxWidth="400" Margin="-50,164,50,246"/>
-            
+                MaxWidth="400" Margin="-50,182,50,498"/>
         </Grid>
     </Grid>
 
