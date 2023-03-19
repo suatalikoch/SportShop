@@ -85,7 +85,7 @@ namespace SportShop.ViewModels
 
             int code = new Random().Next(100000, 1000000);
 
-            email.From.Add(new MailboxAddress("SportShop Support", "sportshop@gmail.com"));
+            email.From.Add(new MailboxAddress("SportShop Support", "sportshophelp@gmail.com"));
             email.To.Add(new MailboxAddress($"{FirstName} {LastName}", Email));
             email.Subject = "Confirm your email";
             email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -96,7 +96,7 @@ namespace SportShop.ViewModels
             using var smtp = new SmtpClient();
 
             smtp.Connect("smtp.gmail.com", 587, true);
-            smtp.Authenticate("smtp_username", "smtp_password");
+            smtp.Authenticate("smtp_username", "sportshop999");
             smtp.Send(email);
             smtp.Disconnect(true);
         }

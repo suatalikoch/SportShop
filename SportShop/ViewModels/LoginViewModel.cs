@@ -14,6 +14,8 @@ namespace SportShop.ViewModels
         private string _email;
         private string _password;
 
+        private bool _rememberUser;
+
         public ICommand NavigateRegisterCommand { get; }
         public ICommand LoginCommand { get; }
         public ICommand NavigateForgotPasswordCommand { get; }
@@ -48,8 +50,9 @@ namespace SportShop.ViewModels
             }
 
             Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Email), null);
+            RememberUser();
 
-            MessageBox.Show("Login credentials are matched!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            //- MessageBox.Show("Login credentials are matched!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 
             return true;
         }
@@ -59,6 +62,16 @@ namespace SportShop.ViewModels
             if (CheckCredentials())
             {
                 _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore);
+            }
+        }
+
+        private void RememberUser()
+        {
+            if (IsRememberUser)
+            {
+                Properties.Settings.Default.Email = Email;
+                Properties.Settings.Default.Password = new UserBusiness().GetByEmail(Email).Password;
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -84,6 +97,16 @@ namespace SportShop.ViewModels
             {
                 _password = value;
                 OnPropertyChanged(nameof(Password));
+            }
+        }
+
+        public bool IsRememberUser
+        {
+            get => _rememberUser;
+            set
+            {
+                _rememberUser = value;
+                OnPropertyChanged(nameof(IsRememberUser));
             }
         }
     }

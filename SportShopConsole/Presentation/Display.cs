@@ -33,7 +33,7 @@ namespace SportShopConsole.Presentation
             Console.WriteLine();
         }
 
-         private void Input()
+        private void Input()
         {
             int operation;
 

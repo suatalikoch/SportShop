@@ -17,17 +17,15 @@ namespace SportShop.ViewModels
 
         public HomeViewModel(NavigationStore navigationStore)
         {
-            _navigationStoreInner = new NavigationStore
-            {
-                CurrentViewModel = new ProductsViewModel()
-            };
+            _navigationStoreInner = new NavigationStore();
+            _navigationStoreInner.CurrentViewModel = new ProductsViewModel(_navigationStoreInner);
 
             _navigationStoreInner.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
             NavigateAccountCommand = new NavigateCommand<AccountViewModel>(_navigationStoreInner, () => new AccountViewModel(navigationStore));
             NavigateFavouriteCommand = new NavigateCommand<FavouriteViewModel>(_navigationStoreInner, () => new FavouriteViewModel());
             NavigateCartCommand = new NavigateCommand<CartViewModel>(_navigationStoreInner, () => new CartViewModel());
-            NavigateProductsCommand = new NavigateCommand<ProductsViewModel>(_navigationStoreInner, () => new ProductsViewModel());
+            NavigateProductsCommand = new NavigateCommand<ProductsViewModel>(_navigationStoreInner, () => new ProductsViewModel(_navigationStoreInner));
         }
 
         private void OnCurrentViewModelChanged()

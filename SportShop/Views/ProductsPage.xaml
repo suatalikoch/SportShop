@@ -20,16 +20,17 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border
-                                Width="300"
-                                MaxHeight="500"
-                                Margin="0 0 16 16"
-                                SnapsToDevicePixels="True">
+                        Width="300"
+                        MaxHeight="500"
+                        Margin="0 0 16 16"
+                        SnapsToDevicePixels="True">
                         <Button
-                                Background="Transparent"
-                                Cursor="Hand"
-                                Padding="16"
-                                BorderBrush="Black"
-                                BorderThickness="0.5">
+                            Background="Transparent"
+                            Cursor="Hand"
+                            Padding="16"
+                            BorderBrush="Black"
+                            BorderThickness="0.5"
+                            Command="{Binding NavigateProductCommand}">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -38,25 +39,25 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Image
-                                        Grid.Row="0"
-                                        Width="260"
-                                        Source="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2e12131a-0133-48ad-97e0-dc2b2a4f4567/air-jordan-7-retro-se-shoes-2CqJ84.png"/>
+                                    Grid.Row="0"
+                                    Width="260"
+                                    Source="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2e12131a-0133-48ad-97e0-dc2b2a4f4567/air-jordan-7-retro-se-shoes-2CqJ84.png"/>
                                 <TextBlock
-                                        Grid.Row="1"
-                                        Margin="0 16 0 0"
-                                        FontSize="18"
-                                        FontWeight="SemiBold"
-                                        Text="{Binding Name}"/>
+                                    Grid.Row="1"
+                                    Margin="0 16 0 0"
+                                    FontSize="18"
+                                    FontWeight="SemiBold"
+                                    Text="{Binding Name}"/>
                                 <TextBlock
-                                        Grid.Row="2"
-                                        FontSize="14"
-                                        TextWrapping="Wrap"
-                                        Text="{Binding Description}"/>
+                                    Grid.Row="2"
+                                    FontSize="14"
+                                    TextWrapping="Wrap"
+                                    Text="{Binding Description}"/>
                                 <TextBlock
-                                        Grid.Row="3"
-                                        Margin="0 16 0 0"
-                                        FontSize="16"
-                                        Text="{Binding Price, StringFormat={}{0:C}}"/>
+                                    Grid.Row="3"
+                                    Margin="0 16 0 0"
+                                    FontSize="16"
+                                    Text="{Binding Price, StringFormat={}{0:C}}"/>
                             </Grid>
                         </Button>
                     </Border>

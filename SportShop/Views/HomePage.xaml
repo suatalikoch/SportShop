@@ -112,6 +112,9 @@
                 <DataTemplate DataType="{x:Type viewModel:EditPasswordViewModel}">
                     <local:EditPasswordPage/>
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:ProductViewModel}">
+                    <local:ProductPage/>
+                </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
     </Grid>

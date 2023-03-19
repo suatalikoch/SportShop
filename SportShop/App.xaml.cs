@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Security.Principal;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -18,8 +20,17 @@ namespace SportShop
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            NavigationStore navigationStore = new NavigationStore();
-            navigationStore.CurrentViewModel = new LoginViewModel(navigationStore);
+            NavigationStore navigationStore = new();
+           
+            if (SportShop.Properties.Settings.Default.Email.Equals("") && SportShop.Properties.Settings.Default.Password.Equals(""))
+            {
+                navigationStore.CurrentViewModel = new LoginViewModel(navigationStore);
+            }
+            else
+            {
+                //Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(SportShop.Properties.Settings.Default.Email), null);
+                navigationStore.CurrentViewModel = new HomeViewModel(navigationStore);
+            }
 
             MainWindow = new MainWindow()
             {

@@ -24,6 +24,9 @@ namespace SportShop.ViewModels
         {
             Thread.CurrentPrincipal = null;
 
+            Properties.Settings.Default.Email = "";
+            Properties.Settings.Default.Password = "";
+
             _navigationStoreOuter.CurrentViewModel = new LoginViewModel(_navigationStoreOuter);
         }
     }

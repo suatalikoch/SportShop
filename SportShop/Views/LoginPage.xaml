@@ -74,6 +74,9 @@
                 Command="{Binding NavigateRegisterCommand}"
                 Style="{StaticResource HyperLinkButton}"/>
         </Grid>
+        <CheckBox
+            IsChecked="{Binding IsRememberUser}"
+            Content="Remember me"/>
         <Button
             Grid.Row="7"
             Grid.ColumnSpan="3"
