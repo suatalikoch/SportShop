@@ -28,7 +28,6 @@ namespace SportShop.ViewModels
             BorderBrush = Brushes.Black;
             MaximizeContent = "\xE739";
             OnPropertyChanged(nameof(MaximizeContent));
-            _navigationStore = navigationStore;
         }
 
         private void ExecuteMinimizeCommand(object obj)
