@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:SportShop.Views"
              xmlns:viewModel="clr-namespace:SportShop.ViewModels"
              xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
+             d:DataContext="{d:DesignInstance Type=viewModel:HomeViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="1280"
@@ -52,13 +53,8 @@
             <TextBox
                 Grid.Column="6"
                 Width="200"
-                Style="{StaticResource SearchBox}">
-                <TextBox.Text>
-                    <Binding
-                        Path="searchText"
-                        UpdateSourceTrigger="PropertyChanged"
-                        Delay="2000" />
-                </TextBox.Text>
+                Style="{StaticResource SearchBox}"
+                Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Delay=2000}">
             </TextBox>
             <Button
                 Grid.Column="8"

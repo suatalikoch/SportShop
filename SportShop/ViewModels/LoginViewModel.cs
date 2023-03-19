@@ -1,6 +1,8 @@
 ﻿using Business;
 using SportShop.Commands;
 using SportShop.Stores;
+using System.Security.Principal;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using BC = BCrypt.Net.BCrypt;
@@ -44,6 +46,8 @@ namespace SportShop.ViewModels
 
                 return false;
             }
+
+            Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Email), null);
 
             MessageBox.Show("Login credentials are matched!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 

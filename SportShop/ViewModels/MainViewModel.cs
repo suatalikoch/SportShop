@@ -1,20 +1,20 @@
 ﻿using SportShop.Commands;
 using SportShop.Stores;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace SportShop.ViewModels
 {
     public partial class MainViewModel : BaseViewModel
     {
-        public Color BorderColor { get; set; }
+        public Brush BorderBrush { get; set; }
         public string MaximizeContent { get; set; }
         public ICommand MinimizeCommand { get; }
         public ICommand MaximizeCommand { get; }
         public ICommand CloseCommand { get; }
 
-        private NavigationStore _navigationStore;
+        private readonly NavigationStore _navigationStore;
 
         public MainViewModel(NavigationStore navigationStore)
         {
@@ -25,7 +25,7 @@ namespace SportShop.ViewModels
             MaximizeCommand = new RelayCommand(ExecuteMaximizeCommand);
             CloseCommand = new RelayCommand(ExecuteCloseCommand);
 
-            BorderColor = Color.Black;
+            BorderBrush = Brushes.Black;
             MaximizeContent = "\xE739";
             OnPropertyChanged(nameof(MaximizeContent));
             _navigationStore = navigationStore;

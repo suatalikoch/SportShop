@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -20,7 +21,7 @@ namespace SportShop.ViewModels
 
         public FavouriteViewModel()
         {
-            _products = new ObservableCollection<Product>(new ProductBusiness().GetAll());
+            _products = new ObservableCollection<Product>(new ProductBusiness().GetFavouriteProducts(new UserBusiness().GetByEmail(Thread.CurrentPrincipal.Identity.Name).Id));
         }
     }
 }

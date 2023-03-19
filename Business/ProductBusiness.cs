@@ -14,7 +14,39 @@ namespace Business
                 return dbcontext.Products.ToList();
             }
         }
-        
+
+        public List<Product> GetFavouriteProducts(int id)
+        {
+            using (dbcontext = new DatabaseContext())
+            {
+                List<Product> products = new();
+                List<Favourite> favourites = dbcontext.Favourites.Where(x => x.UserId == id).ToList();
+
+                foreach (Favourite favourite in favourites)
+                {
+                    products.Add(GetByID(favourite.ProductId));
+                }
+
+                return products;
+            }
+        }
+
+        public List<Product> GetCartProducts(int id)
+        {
+            using (dbcontext = new DatabaseContext())
+            {
+                List<Product> products = new();
+                List<Cart> carts = dbcontext.Carts.Where(x => x.UserId == id).ToList();
+
+                foreach (Cart cart in carts)
+                {
+                    products.Add(GetByID(cart.ProductId));
+                }
+
+                return products;
+            }
+        }
+
         public Product GetByID(int id)
         {
             using (dbcontext = new DatabaseContext())

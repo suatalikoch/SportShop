@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportShop.Views"
         xmlns:viewModel="clr-namespace:SportShop.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewModel:MainViewModel}"
         mc:Ignorable="d"
         Title="SportShop"
         Height="720"
@@ -19,7 +20,7 @@
     </WindowChrome.WindowChrome>
     <Border
         BorderThickness="1"
-        BorderBrush="{Binding BorderColor}">
+        BorderBrush="{Binding BorderBrush}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -50,8 +51,9 @@
                     Command="{Binding CloseCommand}"
                     Style="{StaticResource ControlButton}"/>
             </Grid>
-            <ContentControl Grid.Row="1"
-                        Content="{Binding CurrentViewModel}">
+            <ContentControl
+                Grid.Row="1"
+                Content="{Binding CurrentViewModel}">
                 <ContentControl.Resources>
                     <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
                         <local:MainWindow/>
@@ -70,15 +72,6 @@
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                         <local:HomePage/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type viewModel:AccountViewModel}">
-                        <local:AccountPage/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type viewModel:FavouriteViewModel}">
-                        <local:FavouritePage/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type viewModel:CartViewModel}">
-                        <local:CartPage/>
                     </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>

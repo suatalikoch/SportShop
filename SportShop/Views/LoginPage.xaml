@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:w="clr-namespace:SportShop.Helpers"
              xmlns:local="clr-namespace:SportShop.Views"
+             xmlns:viewmodels="clr-namespace:SportShop.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="720"
              d:DesignWidth="1280"

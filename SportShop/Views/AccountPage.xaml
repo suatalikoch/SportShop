@@ -5,18 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SportShop.Views"
              xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
+             xmlns:viewmodels="clr-namespace:SportShop.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:AccountViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280"
              Background="White">
     <Grid>
-        <Button
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Height="150"
-            Width="150"
-            Background="Red"
-            Content="Return to main page"
-            Command="{Binding NavigateBackCommand}"/>
         <Button
             Height="50"
             Width="100"
@@ -27,7 +21,6 @@
         <Grid 
             Width="200" 
             HorizontalAlignment="Left">
-
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -38,7 +31,6 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
             <TextBlock
                 Grid.Row="0"
                 Text="Settings"
@@ -148,7 +140,7 @@
             <ComboBox
                 Grid.Row="0"
                 Tag="Country/Region"
-                ItemsSource="{Binding countries}"
+                ItemsSource="{Binding Countries}"
                 MaxWidth="400"
                 Margin="-46,389,46,571"/>
             <TextBox
@@ -164,16 +156,13 @@
                 MaxWidth="400"
                 Margin="-45,530,45,430"/>
             <Button
-            Grid.Row="0"
-            Content="DELETE ACCOUNT"
-            Background="SlateGray"
-            Height="30"
-            Width="150"
-            Style="{StaticResource Button}"
-            Margin="390,594,730,376"/>
+                Grid.Row="0"
+                Content="DELETE ACCOUNT"
+                Background="SlateGray"
+                Height="30"
+                Width="150"
+                Style="{StaticResource Button}"
+                Margin="390,594,730,376"/>
         </Grid>
-        
     </Grid>
-
-
 </UserControl>

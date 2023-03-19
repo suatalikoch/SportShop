@@ -14,10 +14,12 @@ namespace SportShop.ViewModels
         public ICommand RecoverPasswordCommand { get; }
         public ICommand NavigateBackCommand { get; }
 
-        private NavigationStore _navigationStore;
+        private readonly NavigationStore _navigationStore;
 
         public ForgotPasswordViewModel(NavigationStore navigationStore)
         {
+            _navigationStore = navigationStore;
+
             RecoverPasswordCommand = new RelayCommand(ExecuteRecoverPasswordCommand, CanExecuteRecoverPasswordCommand);
             NavigateBackCommand = new NavigateCommand<LoginViewModel>(navigationStore , () => new LoginViewModel(navigationStore));
         }
