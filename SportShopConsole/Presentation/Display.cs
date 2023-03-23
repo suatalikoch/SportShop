@@ -1,4 +1,4 @@
-﻿using SportShopConsole.Controllers;
+﻿using SportShopConsole.Menus;
 
 namespace SportShopConsole.Presentation
 {
@@ -6,12 +6,12 @@ namespace SportShopConsole.Presentation
     {
         private readonly int closeOperationId = 7;
 
-        private readonly CartController cartController = new();
-        private readonly CategoryController categoryController = new();
-        private readonly FavouriteController favouriteController = new();
-        private readonly ProductController productController = new();
-        private readonly SubcategoryController subcategoryController = new();
-        private readonly UserController userController = new();
+        private readonly CartMenu cartMenu = new();
+        private readonly CategoryMenu categoryMenu = new();
+        private readonly FavouriteMenu favouriteMenu = new();
+        private readonly ProductMenu productMenu = new();
+        private readonly SubcategoryMenu subcategoryMenu = new();
+        private readonly UserMenu userMenu = new();
 
         public Display()
         {
@@ -46,22 +46,22 @@ namespace SportShopConsole.Presentation
                 switch (operation)
                 {
                     case 1:
-                        cartController.Input();
+                        cartMenu.Input();
                         break;
                     case 2:
-                        categoryController.Input();
+                        categoryMenu.Input();
                         break;
                     case 3:
-                        favouriteController.Input();
+                        favouriteMenu.Input();
                         break;
                     case 4:
-                        productController.Input();
+                        productMenu.Input();
                         break;
                     case 5:
-                        subcategoryController.Input();
+                        subcategoryMenu.Input();
                         break;
                     case 6:
-                        userController.Input();
+                        userMenu.Input();
                         break;
                     case 7:
                         Console.WriteLine("Press any key...");

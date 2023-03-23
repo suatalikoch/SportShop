@@ -1,18 +1,13 @@
 ﻿using Business;
 using Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SportShopConsole.Controllers
+namespace SportShopConsole.Menus
 {
-    internal class CategoryController
+    internal class CategoryMenu
     {
         private readonly int closeOperationId = 6;
 
-        private readonly CategoryBusiness categoryBusiness = new();
+        private readonly CategoryController categoryController = new();
 
         private void ShowMenu()
         {
@@ -72,7 +67,7 @@ namespace SportShopConsole.Controllers
             Console.WriteLine(new string(' ', 18) + "CATEGORIES");
             Console.WriteLine(new string('-', 40));
 
-            List<Category> categories = categoryBusiness.GetAll();
+            List<Category> categories = categoryController.GetAll();
 
             foreach (Category category in categories)
             {
@@ -87,7 +82,7 @@ namespace SportShopConsole.Controllers
             Console.Write("Name: ");
             category.Name = Console.ReadLine();
 
-            categoryBusiness.Add(category);
+            categoryController.Add(category);
 
             Console.WriteLine("The category has been added!");
         }
@@ -97,7 +92,7 @@ namespace SportShopConsole.Controllers
             Console.Write("Id: ");
             int id = int.Parse(Console.ReadLine());
 
-            Category category = categoryBusiness.GetByID(id);
+            Category category = categoryController.GetByID(id);
 
             if (category is null)
             {
@@ -111,7 +106,7 @@ namespace SportShopConsole.Controllers
             Console.Write("Name: ");
             category.Name = Console.ReadLine();
 
-            categoryBusiness.Update(category);
+            categoryController.Update(category);
 
             Console.WriteLine("The category has been updated!");
         }
@@ -121,7 +116,7 @@ namespace SportShopConsole.Controllers
             Console.Write("Id: ");
             int id = int.Parse(Console.ReadLine());
 
-            Category category = categoryBusiness.GetByID(id);
+            Category category = categoryController.GetByID(id);
 
             if (category is null)
             {
@@ -141,7 +136,7 @@ namespace SportShopConsole.Controllers
             Console.Write("Id: ");
             int id = int.Parse(Console.ReadLine());
 
-            Category category = categoryBusiness.GetByID(id);
+            Category category = categoryController.GetByID(id);
 
             if (category is null)
             {
@@ -150,7 +145,7 @@ namespace SportShopConsole.Controllers
                 return;
             }
 
-            categoryBusiness.Delete(id);
+            categoryController.Delete(id);
             Console.WriteLine("The category has been deleted!");
         }
     }

@@ -2,12 +2,8 @@
 using Data.Models;
 using SportShop.Commands;
 using SportShop.Stores;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace SportShop.ViewModels
@@ -21,7 +17,7 @@ namespace SportShop.ViewModels
 
         public ProductsViewModel(NavigationStore navigationStore)
         {
-            _products = new ObservableCollection<Product>(new ProductBusiness().GetAll());
+            _products = new ObservableCollection<Product>(new ProductController().GetAll());
 
             NavigateProductCommand = new NavigateCommand<ProductViewModel>(navigationStore, () => new ProductViewModel());
         }

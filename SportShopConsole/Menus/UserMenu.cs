@@ -1,18 +1,13 @@
 ﻿using Business;
 using Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SportShopConsole.Controllers
+namespace SportShopConsole.Menus
 {
-    internal class UserController
+    internal class UserMenu
     {
         private readonly int closeOperationId = 6;
 
-        private readonly UserBusiness userBusiness = new();
+        private readonly UserController userBusiness = new();
 
         private void ShowMenu()
         {

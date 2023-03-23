@@ -1,13 +1,7 @@
 ﻿using Business;
 using Data.Models;
 using SportShop.Commands;
-using SportShop.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace SportShop.ViewModels
@@ -25,8 +19,8 @@ namespace SportShop.ViewModels
 
         private void ExecuteAddToCartCommand(object obj)
         {
-            UserBusiness userBusiness = new();
-            CartBusiness cartBusiness = new();
+            UserController userBusiness = new();
+            CartController cartBusiness = new();
 
             Cart cart = new()
             {
@@ -39,8 +33,8 @@ namespace SportShop.ViewModels
 
         private void ExecuteFavouriteCommand(object obj)
         {
-            UserBusiness userBusiness = new();
-            FavouriteBusiness favouriteBusiness = new();
+            UserController userBusiness = new();
+            FavouriteController favouriteBusiness = new();
 
             Favourite favourite = new()
             {

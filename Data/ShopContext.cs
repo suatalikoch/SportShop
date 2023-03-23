@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public class DatabaseContext : DbContext
+    public class ShopContext : DbContext
     {
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Category> Categories { get; set; }

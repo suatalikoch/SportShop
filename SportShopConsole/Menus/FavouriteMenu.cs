@@ -1,18 +1,13 @@
 ﻿using Business;
 using Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SportShopConsole.Controllers
+namespace SportShopConsole.Menus
 {
-    internal class FavouriteController
+    internal class FavouriteMenu
     {
         private readonly int closeOperationId = 6;
 
-        private readonly FavouriteBusiness favouriteBusiness = new();
+        private readonly FavouriteController favouriteBusiness = new();
 
         private void ShowMenu()
         {

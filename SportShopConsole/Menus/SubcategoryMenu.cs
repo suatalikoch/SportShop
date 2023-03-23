@@ -1,18 +1,13 @@
 ﻿using Business;
 using Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SportShopConsole.Controllers
+namespace SportShopConsole.Menus
 {
-    internal class SubcategoryController
+    internal class SubcategoryMenu
     {
         private readonly int closeOperationId = 6;
 
-        private readonly SubcategoryBusiness subcategoryBusiness = new();
+        private readonly SubcategoryController subcategoryBusiness = new();
 
         private void ShowMenu()
         {

@@ -1,18 +1,14 @@
 ﻿using Business;
+using Data;
 using Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SportShopConsole.Controllers
+namespace SportShopConsole.Menus
 {
-    internal class ProductController
+    public class ProductMenu
     {
         private readonly int closeOperationId = 6;
 
-        private readonly ProductBusiness productBusiness = new();
+        private readonly ProductController productBusiness = new();
 
         private void ShowMenu()
         {
@@ -47,10 +43,10 @@ namespace SportShopConsole.Controllers
                         Add();
                         break;
                     case 3:
-                        Fetch();
+                        Update();
                         break;
                     case 4:
-                        Update();
+                        Fetch();
                         break;
                     case 5:
                         Delete();

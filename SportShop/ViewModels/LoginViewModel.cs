@@ -33,7 +33,7 @@ namespace SportShop.ViewModels
 
         private bool CheckCredentials()
         {
-            UserBusiness userBusiness = new();
+            UserController userBusiness = new();
 
             if (userBusiness.GetByEmail(Email) is null)
             {
@@ -70,7 +70,7 @@ namespace SportShop.ViewModels
             if (IsRememberUser)
             {
                 Properties.Settings.Default.Email = Email;
-                Properties.Settings.Default.Password = new UserBusiness().GetByEmail(Email).Password;
+                Properties.Settings.Default.Password = new UserController().GetByEmail(Email).Password;
                 Properties.Settings.Default.Save();
             }
         }

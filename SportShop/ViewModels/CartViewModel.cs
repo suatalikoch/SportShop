@@ -1,12 +1,8 @@
 ﻿using Business;
 using Data.Models;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace SportShop.ViewModels
 {
@@ -18,7 +14,7 @@ namespace SportShop.ViewModels
 
         public CartViewModel()
         {
-            _products = new ObservableCollection<Product>(new ProductBusiness().GetCartProducts(new UserBusiness().GetByEmail(Thread.CurrentPrincipal.Identity.Name).Id));
+            _products = new ObservableCollection<Product>(new ProductController().GetCartProducts(new UserController().GetByEmail(Thread.CurrentPrincipal.Identity.Name).Id));
         }
     }
 }
