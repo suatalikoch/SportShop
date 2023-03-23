@@ -16,15 +16,100 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock
-            Background="White"
             Grid.Row="0"
+            Background="White"
             Text="Cart"
-            FontSize="28"
+            FontSize="32"
             Padding="32 0 0 0"
             FontWeight="Bold"
             VerticalAlignment="Center"/>
-        <ScrollViewer
+        <Grid
             Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.4*" />
+               
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="128"/>
+                <RowDefinition Height="16"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="16"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="48"/>
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="16"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="16"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Grid.RowSpan="30"
+                Text="PRODUCTS"
+                FontSize="54"
+                Padding="32 0 0 0"
+                FontWeight="Bold"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"/>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="Summary"
+                FontSize="28"
+                FontWeight="SemiBold"
+                VerticalAlignment="Center"/>
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="1"
+                Text="Subtotal: $"
+                FontSize="28"
+                Padding="16 0 0 0"
+                VerticalAlignment="Center"/>
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="1"
+                Text="Tax: $"
+                FontSize="28"
+                Padding="16 0 0 0"
+                VerticalAlignment="Center"/>
+            <TextBlock
+                Grid.Row="6"
+                Grid.Column="1"
+                Text="Shipping Fees: $"
+                FontSize="28"
+                Padding="16 0 0 0"
+                VerticalAlignment="Center"/>
+            <TextBlock
+                Grid.Column="1"
+                Grid.Row="8"
+                Background="Gray"/>
+            <TextBlock
+                Grid.Column="1"
+                Grid.Row="10"
+                Text="Total: $"
+                FontSize="28"
+                Padding="16 0 0 0"
+                VerticalAlignment="Center"/>
+            <TextBlock
+                Grid.Column="1"
+                Grid.Row="12"
+                Background="Gray"/>
+            <Button
+                Margin="12 0"
+                Grid.Column="1"
+                Grid.Row="14"
+                Content="Checkout"
+                Command="{Binding FavouriteCommand}"
+                Style="{StaticResource Button}"/>
+        </Grid>
+    
+        <ScrollViewer
+            Grid.Row="1" Margin="0,10,0,-10">
             <ItemsControl
                 Margin="0 16 0 0"
                 MaxWidth="1280"

@@ -104,7 +104,7 @@ namespace SportShop.ViewModels
         private void ExecuteRegisterCommand(object obj)
         {
             RegisterUser();
-            SendConfirmationEmail();
+            //SendConfirmationEmail();
         }
 
         public string? FirstName
