@@ -2,144 +2,319 @@
 using Data;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
-using Moq;
 
 namespace NUnitTests
 {
+    [TestFixture]
     public class ProductTests
     {
-        [TestCase]
-        public void ListAllProductsInDatabase()
+        private ShopContext _shopContext;
+        private UserController _userController;
+        private ProductController _productController;
+        private FavouriteController _favouriteController;
+        private CartController _cartController;
+
+        [SetUp]
+        public void Setup()
         {
-            var data = new List<Product>()
-            {
-                new Product("testProduct1", "Testcription1", 5.25m, 2, "https:www.testimage2.com", 1, 1) { Id = 1 },
-                new Product("testProduct2", "Testcription2", 11.96m, 0, "https:www.testimage2.com", 1, 1) { Id = 2 },
-                new Product("testProduct3", "Testcription3", 25.25m, 20, "https:www.testimage2.com", 1, 1) { Id = 3 },
-            }.AsQueryable();
+            // Set up a new in-memory database for testing
+            var options = new DbContextOptionsBuilder<ShopContext>()
+                .UseInMemoryDatabase(databaseName: "test_database")
+                .Options;
 
-            var mockSet = new Mock<DbSet<Product>>();
-            mockSet.As<IQueryable<Product>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
-
-            var mockContext = new Mock<ShopContext>();
-            mockContext.Setup(c => c.Products).Returns(mockSet.Object);
-
-            var service = new ProductController(mockContext.Object);
-            data.ToList().ForEach(p => service.Add(p));
-
-            var products = service.GetAll();
-
-            Assert.That(products, Has.Count.EqualTo(3));
+            _shopContext = new ShopContext(options);
+            _userController = new UserController(_shopContext);
+            _productController = new ProductController(_shopContext);
+            _favouriteController = new FavouriteController(_shopContext);
+            _cartController = new CartController(_shopContext);
         }
 
-        [TestCase]
-        public void AddProductInDatabase()
+        [TearDown]
+        public void TearDown()
         {
-            var data = new List<Product>()
-            {
-                new Product("testProduct1", "Testcription", 4.25m, 5, "https:www.testimage.com", 1, 1) { Id = 1 }
-            }.AsQueryable();
-
-            var mockSet = new Mock<DbSet<Product>>();
-            mockSet.As<IQueryable<Product>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
-
-            var mockContext = new Mock<ShopContext>();
-            mockContext.Setup(c => c.Products).Returns(mockSet.Object);
-
-            var service = new ProductController(mockContext.Object);
-            data.ToList().ForEach(p => service.Add(p));
-
-            var product = service.GetByID(1);
-
-            Assert.That(product, Is.Not.Null);
+            // Dispose of the in-memory database after each test
+            _shopContext.Database.EnsureDeleted();
+            _shopContext.Dispose();
         }
 
-        [TestCase]
-        public void FetchProductInDatabase()
+        [Test]
+        public void GetAll_ReturnsAllProducts()
         {
-            var data = new List<Product>()
+            // Arrange
+            var expectedProducts = new List<Product>
             {
-                new Product("testProduct1", "Testcription", 4.25m, 5, "https:www.testimage.com", 1, 1) { Id = 1 }
-            }.AsQueryable();
+                new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 },
+                new Product("Product 2", "Description 2", 20.00m, 0.00, "image2.jpg") { Id = 2 },
+                new Product("Product 3", "Description 3", 30.00m, 0.00, "image3.jpg") { Id = 3 },
+            };
 
-            var mockSet = new Mock<DbSet<Product>>();
-            mockSet.As<IQueryable<Product>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            _productController.AddRange(expectedProducts);
 
-            var mockContext = new Mock<ShopContext>();
-            mockContext.Setup(c => c.Products).Returns(mockSet.Object);
+            // Act
+            var actualProducts = _productController.GetAll();
 
-            var service = new ProductController(mockContext.Object);
-            data.ToList().ForEach(p => service.Add(p));
+            // Assert
+            Assert.That(actualProducts, Has.Count.EqualTo(expectedProducts.Count));
 
-            var product = service.GetByID(1);
-
-            Assert.That(product.Name, Is.EqualTo("testProduct1"));
+            foreach (var expectedProduct in expectedProducts)
+            {
+                var actualProduct = actualProducts.FirstOrDefault(x => x.Id == expectedProduct.Id);
+                Assert.That(actualProduct, Is.Not.Null);
+                Assert.Multiple(() =>
+                {
+                    Assert.That(actualProduct.Name, Is.EqualTo(expectedProduct.Name));
+                    Assert.That(actualProduct.Price, Is.EqualTo(expectedProduct.Price));
+                });
+            }
         }
 
-        [TestCase]
-        public void UpdateProductInDatabase()
+        [Test]
+        public void GetAll_ReturnsEmptyList_WhenNoProductsExist()
         {
-            var data = new List<Product>()
-            {
-                new Product("testProduct1", "Testcription", 4.25m, 5, "https:www.testimage.com", 1, 1) { Id = 1 }
-            }.AsQueryable();
+            // Arrange
+            _productController.RemoveRange(_shopContext.Products.ToList());
 
-            var mockSet = new Mock<DbSet<Product>>();
-            mockSet.As<IQueryable<Product>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            var expectedProducts = new List<Product>();
 
-            var mockContext = new Mock<ShopContext>();
-            mockContext.Setup(c => c.Products).Returns(mockSet.Object);
+            // Act
+            var actualProducts = _productController.GetAll();
 
-            var service = new ProductController(mockContext.Object);
-            data.ToList().ForEach(p => service.Add(p));
-
-            var product = service.GetByID(1);
-            product.Name = "testProduct2";
-
-            service.Update(product);
-
-            var productChanged = service.GetByID(1);
-
-            Assert.That(productChanged.Name, Is.EqualTo("testProduct2"));
+            // Assert
+            Assert.That(actualProducts, Has.Count.EqualTo(expectedProducts.Count));
+            CollectionAssert.AreEquivalent(expectedProducts, actualProducts);
         }
 
-        [TestCase]
-        public void DeleteProductInDatabase()
+        [Test]
+        public void GetByID_ReturnsCorrectProduct()
         {
-            var data = new List<Product>()
+            // Arrange
+            var expectedProduct = new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 };
+
+            _productController.Add(expectedProduct);
+
+            // Act
+            var actualProduct = _productController.GetByID(expectedProduct.Id);
+
+            // Assert
+            Assert.That(actualProduct, Is.Not.Null);
+            Assert.Multiple(() =>
             {
-                new Product("testProduct1", "Testcription", 4.25m, 5, "https:www.testimage.com", 1, 1) { Id = 1 }
-            }.AsQueryable();
+                Assert.That(actualProduct.Id, Is.EqualTo(expectedProduct.Id));
+                Assert.That(actualProduct.Name, Is.EqualTo(expectedProduct.Name));
+                Assert.That(actualProduct.Price, Is.EqualTo(expectedProduct.Price));
+            });
+        }
 
-            var mockSet = new Mock<DbSet<Product>>();
-            mockSet.As<IQueryable<Product>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Product>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+        [Test]
+        public void GetByID_ReturnsNullWhenProductDoesNotExist()
+        {
+            // Act
+            var actualProduct = _productController.GetByID(1);
 
-            var mockContext = new Mock<ShopContext>();
-            mockContext.Setup(c => c.Products).Returns(mockSet.Object);
+            // Assert
+            Assert.That(actualProduct, Is.Null);
+        }
 
-            var service = new ProductController(mockContext.Object);
-            data.ToList().ForEach(p => service.Add(p));
+        [Test]
+        public void GetFavouriteProducts_WhenUserHasFavourites_ReturnsListOfProducts()
+        {
+            // Arrange
+            int userId = 2; // user ID that has favourites
 
-            service.Delete(1);
+            var expectedProducts = new List<Product>
+            {
+                new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 },
+                new Product("Product 2", "Description 2", 20.00m, 0.00, "image2.jpg") { Id = 2 },
+                new Product("Product 3", "Description 3", 30.00m, 0.00, "image3.jpg") { Id = 3 },
+            };
 
-            var product = service.GetByID(1);
+            // Add some products to the favourites for the user
+            var favourites = new List<Favourite>()
+            {
+                new Favourite { UserId = userId, ProductId = 1 },
+                new Favourite { UserId = userId, ProductId = 2 },
+                new Favourite { UserId = userId, ProductId = 3 }
+            };
 
-            Assert.That(product, Is.EqualTo(null));
+            var user = new User("User 1", "Userov 1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = userId };
+
+            _productController.AddRange(expectedProducts);
+            _favouriteController.AddRange(favourites);
+            _userController.Add(user);
+
+            // Act
+            var result = _productController.GetFavouriteProducts(userId);
+
+            // Assert
+            Assert.That(result, Is.Not.Empty);
+            Assert.That(result, Has.All.InstanceOf<Product>());
+        }
+
+        [Test]
+        public void GetFavouriteProducts_WhenUserIdDoesNotExist_ReturnsEmptyList()
+        {
+            // Arrange
+            int userId = 10; // user ID that does not exist
+
+            // Act
+            var result = _productController.GetFavouriteProducts(userId);
+
+            // Assert
+            Assert.That(result, Is.Empty);
+        }
+
+        [Test]
+        public void GetFavouriteProducts_WhenUserHasNoFavourites_ReturnsEmptyList()
+        {
+            // Arrange
+            int userId = 1; // user ID that exists but has no favourites
+
+            // Act
+            var result = _productController.GetFavouriteProducts(userId);
+
+            // Assert
+            Assert.That(result, Is.Empty);
+        }
+
+        [Test]
+        public void GetCartProducts_ReturnsAllCartProductsForUser()
+        {
+            // Arrange
+            int userId = 1;
+
+            var expectedProducts = new List<Product>
+            {
+                new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 },
+                new Product("Product 2", "Description 2", 20.00m, 0.00, "image2.jpg") { Id = 2 },
+                new Product("Product 3", "Description 3", 30.00m, 0.00, "image3.jpg") { Id = 3 },
+            };
+
+            // Add some products to the cart for the user
+            var carts = new List<Cart>()
+            {
+                new Cart { UserId = userId, ProductId = 1 },
+                new Cart { UserId = userId, ProductId = 2 },
+                new Cart { UserId = userId, ProductId = 3 }
+            };
+
+            var user = new User("User 1", "Userov 1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = userId };
+
+            _productController.AddRange(expectedProducts);
+            _cartController.AddRange(carts);
+            _userController.Add(user);
+
+            // Act
+            var result = _productController.GetCartProducts(userId);
+
+            // Assert
+            Assert.That(result, Has.Count.EqualTo(3));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.Any(x => x.Id == 1), Is.True);
+                Assert.That(result.Any(x => x.Id == 2), Is.True);
+                Assert.That(result.Any(x => x.Id == 3), Is.True);
+            });
+        }
+
+        [Test]
+        public void Add_AddsProductToDatabase()
+        {
+            // Arrange
+            var product = new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 };
+
+            // Act
+            _productController.Add(product);
+
+            // Assert
+            var result = _productController.GetByID(product.Id);
+
+            Assert.That(result, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.Name, Is.EqualTo(product.Name));
+                Assert.That(result.Price, Is.EqualTo(product.Price));
+            });
+        }
+
+        [Test]
+        public void Add_DoesNotAddNullProduct()
+        {
+            // Act
+            _productController.Add(null);
+
+            var result = _productController.GetAll();
+
+            // Assert
+            Assert.That(result, Is.Empty);
+        }
+
+        [Test]
+        public void Update_UpdatesProductInDatabase()
+        {
+            // Arrange
+            var product = new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 };
+
+            _productController.Add(product);
+
+            // Act
+
+            product.Name = "New Name";
+            product.Price = 12.99m;
+
+            _productController.Update(product);
+
+            // Assert
+            var result = _productController.GetByID(product.Id);
+
+            Assert.That(result, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.Name, Is.EqualTo(product.Name));
+                Assert.That(result.Price, Is.EqualTo(product.Price));
+            });
+        }
+
+        [Test]
+        public void Update_DoesNotUpdateNonexistentProduct()
+        {
+            // Arrange
+            var product = new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 };
+
+            // Act
+            _productController.Update(product);
+
+            var result = _productController.GetAll();
+
+            // Assert
+            Assert.That(result, Is.Empty);
+        }
+
+        [Test]
+        public void Delete_RemovesProductFromDatabase()
+        {
+            // Arrange
+            var product = new Product ("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 };
+
+            _productController.Add(product);
+
+            // Act
+            _productController.Delete(product.Id);
+
+            // Assert
+            var result = _productController.GetByID(product.Id);
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
+        public void Delete_DoesNotRemoveNonexistentProduct()
+        {
+            // Act
+            _productController.Delete(1);
+
+            var result = _productController.GetAll();
+
+            // Assert
+            Assert.That(result, Is.Empty);
         }
     }
 }

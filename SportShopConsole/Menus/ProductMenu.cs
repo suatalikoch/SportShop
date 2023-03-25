@@ -1,5 +1,4 @@
 ﻿using Business;
-using Data;
 using Data.Models;
 
 namespace SportShopConsole.Menus
@@ -115,7 +114,7 @@ namespace SportShopConsole.Menus
 
             if (product is null)
             {
-                Console.WriteLine("User not found!");
+                Console.WriteLine("Product not found!");
 
                 return;
             }

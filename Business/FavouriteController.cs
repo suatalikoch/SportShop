@@ -5,7 +5,7 @@ namespace Business
 {
     public class FavouriteController
     {
-        private ShopContext? _shopContext;
+        private readonly ShopContext _shopContext;
 
         public FavouriteController()
         {
@@ -29,8 +29,20 @@ namespace Business
 
         public void Add(Favourite favourite)
         {
-            _shopContext.Favourites.Add(favourite);
-            _shopContext.SaveChanges();
+            if (favourite is not null)
+            {
+                _shopContext.Favourites.Add(favourite);
+                _shopContext.SaveChanges();
+            }
+        }
+
+        public void AddRange(List<Favourite> favourites)
+        {
+            if (favourites is not null)
+            {
+                _shopContext.Favourites.AddRange(favourites);
+                _shopContext.SaveChanges();
+            }
         }
 
         public void Delete(int userId)
@@ -42,6 +54,12 @@ namespace Business
                 _shopContext.Favourites.Remove(item);
                 _shopContext.SaveChanges();
             }
+        }
+
+        public void DeleteAll()
+        {
+            _shopContext.Favourites.RemoveRange(_shopContext.Favourites);
+            _shopContext.SaveChanges();
         }
     }
 }

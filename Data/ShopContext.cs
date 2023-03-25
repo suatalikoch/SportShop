@@ -12,9 +12,29 @@ namespace Data
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Favourite> Favourites { get; set; }
 
+        public ShopContext()
+        { }
+
+        public ShopContext(DbContextOptions<ShopContext> options) : base(options)
+        { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=localhost;user=root;database=sportshop");
+            // This will only run when the context is instantiated outside of a test
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseMySQL("server=localhost;user=root;database=sportshop");
+            }
+        }
+
+        public static ShopContext CreateTestContext()
+        {
+            // This method will create a new instance of the context with an in-memory database
+            var options = new DbContextOptionsBuilder<ShopContext>()
+                .UseInMemoryDatabase(databaseName: "TestDatabase")
+                .Options;
+
+            return new ShopContext(options);
         }
     }
 }

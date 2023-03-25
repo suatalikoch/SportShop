@@ -5,7 +5,7 @@ namespace Business
 {
     public class ProductController
     {
-        private readonly ShopContext? _shopContext;
+        private readonly ShopContext _shopContext;
 
         public ProductController()
         {
@@ -22,50 +22,86 @@ namespace Business
             return _shopContext.Products.ToList();
         }
 
-        public List<Product> GetFavouriteProducts(int id)
-        {
-            List<Product> products = new();
-            List<Favourite> favourites = _shopContext.Favourites.Where(x => x.UserId == id).ToList();
-
-            foreach (Favourite favourite in favourites)
-            {
-                products.Add(GetByID(favourite.ProductId));
-            }
-
-            return products;
-        }
-
-        public List<Product> GetCartProducts(int id)
-        {
-            List<Product> products = new();
-            List<Cart> carts = _shopContext.Carts.Where(x => x.UserId == id).ToList();
-
-            foreach (Cart cart in carts)
-            {
-                products.Add(GetByID(cart.ProductId));
-            }
-
-            return products;
-        }
-
         public Product GetByID(int id)
         {
             return _shopContext.Products.FirstOrDefault(x => x.Id == id);
         }
 
+        public List<Product> GetFavouriteProducts(int userId)
+        {
+            List<Product> products = new();
+            List<Favourite> favourites = _shopContext.Favourites.Where(x => x.UserId == userId).ToList();
+
+            foreach (Favourite favourite in favourites)
+            {
+                if (GetByID(favourite.ProductId) is not null)
+                {
+                    products.Add(GetByID(favourite.ProductId));
+                }
+            }
+            
+            return products;
+        }
+
+        public List<Product> GetCartProducts(int userId)
+        {
+            List<Product> products = new();
+            List<Cart> carts = _shopContext.Carts.Where(x => x.UserId == userId).ToList();
+
+            foreach (Cart cart in carts)
+            {
+                if (GetByID(cart.ProductId) is not null)
+                {
+                    products.Add(GetByID(cart.ProductId));
+                }
+            }
+
+            return products;
+        }
+
         public void Add(Product product)
         {
-            _shopContext.Products.Add(product);
-            _shopContext.SaveChanges();
+            if (product is not null)
+            {
+                _shopContext.Products.Add(product);
+                _shopContext.SaveChanges();
+            }
+        }
+
+        public void AddRange(List<Product> products)
+        {
+            if (products is not null)
+            {
+                _shopContext.Products.AddRange(products);
+                _shopContext.SaveChanges();
+            }
         }
 
         public void Update(Product product)
         {
             var item = GetByID(product.Id);
 
-            if (item != null)
+            if (item is not null)
             {
-                _shopContext.Entry(item).CurrentValues.SetValues(product);
+                item.Name = product.Name;
+                item.Description = product.Description;
+                item.Price = product.Price;
+                item.Discount = product.Discount;
+                item.Image = product.Image;
+                item.CategoryId = product.CategoryId;
+                item.SubCategoryId = product.SubCategoryId;
+                item.Category = product.Category;
+                item.Subcategory = product.Subcategory;
+                
+                _shopContext.SaveChanges();
+            }
+        }
+
+        public void RemoveRange(List<Product> products)
+        {
+            if (products is not null)
+            {
+                _shopContext.Products.RemoveRange(products);
                 _shopContext.SaveChanges();
             }
         }
@@ -74,11 +110,17 @@ namespace Business
         {
             var item = GetByID(id);
 
-            if (item != null)
+            if (item is not null)
             {
                 _shopContext.Products.Remove(item);
                 _shopContext.SaveChanges();
             }
+        }
+
+        public void DeleteAll()
+        {
+            _shopContext.Products.RemoveRange(_shopContext.Products);
+            _shopContext.SaveChanges();
         }
     }
 }

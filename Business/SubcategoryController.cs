@@ -5,10 +5,12 @@ namespace Business
 {
     public class SubcategoryController
     {
-        private ShopContext? _shopContext;
+        private readonly ShopContext _shopContext;
 
         public SubcategoryController()
-        { }
+        {
+            _shopContext = new ShopContext();
+        }
 
         public SubcategoryController(ShopContext shopContext)
         {

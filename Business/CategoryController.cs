@@ -5,7 +5,7 @@ namespace Business
 {
     public class CategoryController
     {
-        private ShopContext? _shopContext;
+        private readonly ShopContext _shopContext;
 
         public CategoryController()
         {

@@ -5,7 +5,7 @@ namespace Business
 {
     public class CartController
     {
-        private ShopContext? _shopContext;
+        private readonly ShopContext _shopContext;
 
         public CartController()
         {
@@ -33,6 +33,12 @@ namespace Business
             _shopContext.SaveChanges();
         }
 
+        public void AddRange(List<Cart> carts)
+        {
+            _shopContext.Carts.AddRange(carts);
+            _shopContext.SaveChanges();
+        }
+
         public void Delete(int userId)
         {
             var item = _shopContext.Carts.Find(userId);
@@ -42,6 +48,12 @@ namespace Business
                 _shopContext.Carts.Remove(item);
                 _shopContext.SaveChanges();
             }
+        }
+
+        public void DeleteAll()
+        {
+            _shopContext.Carts.RemoveRange(_shopContext.Carts);
+            _shopContext.SaveChanges();
         }
     }
 }

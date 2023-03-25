@@ -5,7 +5,7 @@ namespace Business
 {
     public class UserController
     {
-        private ShopContext? _shopContext;
+        private readonly ShopContext _shopContext;
 
         public UserController()
         {
@@ -24,7 +24,7 @@ namespace Business
 
         public User GetByID(int id)
         {
-            return _shopContext.Users.Find(id);
+            return _shopContext.Users.FirstOrDefault(x => x.Id == id);
         }
 
         public User? GetByEmail(string email)
@@ -39,15 +39,27 @@ namespace Business
 
         public void Add(User user)
         {
-            _shopContext.Users.Add(user);
-            _shopContext.SaveChanges();
+            if (user is not null)
+            {
+                _shopContext.Users.Add(user);
+                _shopContext.SaveChanges();
+            }
+        }
+
+        public void AddRange(List<User> users)
+        {
+            if (users is not null)
+            {
+                _shopContext.Users.AddRange(users);
+                _shopContext.SaveChanges();
+            }
         }
 
         public void Update(User user)
         {
             var item = _shopContext.Users.Find(user.Id);
 
-            if (item != null)
+            if (item is not null)
             {
                 _shopContext.Entry(item).CurrentValues.SetValues(user);
                 _shopContext.SaveChanges();
@@ -58,11 +70,26 @@ namespace Business
         {
             var item = _shopContext.Users.Find(id);
 
-            if (item != null)
+            if (item is not null)
             {
                 _shopContext.Users.Remove(item);
                 _shopContext.SaveChanges();
             }
+        }
+
+        public void RemoveRange(List<User> users)
+        {
+            if (users is not null)
+            {
+                _shopContext.Users.RemoveRange(users);
+                _shopContext.SaveChanges();
+            }
+        }
+
+        public void DeleteAll()
+        {
+            _shopContext.Users.RemoveRange(_shopContext.Users);
+            _shopContext.SaveChanges();
         }
     }
 }
