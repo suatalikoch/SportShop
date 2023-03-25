@@ -1,12 +1,12 @@
 ﻿using Business;
-using Data.Models;
 using Data;
+using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace NUnitTests
 {
     [TestFixture]
-    internal class UserTests
+    public class UserTests
     {
         private ShopContext _shopContext;
         private UserController _userController;

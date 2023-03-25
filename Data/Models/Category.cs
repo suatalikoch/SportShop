@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Data.Models
 {
@@ -9,7 +8,7 @@ namespace Data.Models
         public int Id { get; set; }
 
         [Required]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         public Category()
         { }

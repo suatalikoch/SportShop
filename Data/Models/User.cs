@@ -56,7 +56,6 @@ namespace Data.Models
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTimeOffset LastLoginDate { get; set; }
-        public object? Name { get; set; }
 
         public User()
         { }
