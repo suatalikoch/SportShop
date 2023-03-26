@@ -27,14 +27,9 @@ namespace Business
             return _shopContext.Users.FirstOrDefault(x => x.Id == id);
         }
 
-        public User? GetByEmail(string email)
+        public User GetByEmail(string email)
         {
-            if (_shopContext.Users.Any(x => x.Email.Equals(email)))
-            {
-                return _shopContext.Users.Where(x => x.Email.Equals(email)).First();
-            };
-
-            return null;
+            return _shopContext.Users.FirstOrDefault(x => x.Email == email);
         }
 
         public void Add(User user)

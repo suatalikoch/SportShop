@@ -24,7 +24,7 @@ namespace Business
 
         public Favourite GetByID(int userId)
         {
-            return _shopContext.Favourites.Find(userId);
+            return _shopContext.Favourites.FirstOrDefault(x => x.UserId == userId);
         }
 
         public void Add(Favourite favourite)
@@ -47,9 +47,9 @@ namespace Business
 
         public void Delete(int userId)
         {
-            var item = _shopContext.Favourites.Find(userId);
+            var item = GetByID(userId);
 
-            if (item != null)
+            if (item is not null)
             {
                 _shopContext.Favourites.Remove(item);
                 _shopContext.SaveChanges();

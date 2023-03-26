@@ -24,26 +24,32 @@ namespace Business
 
         public Cart GetByID(int userId)
         {
-            return _shopContext.Carts.Find(userId);
+            return _shopContext.Carts.FirstOrDefault(x => x.UserId == userId);
         }
 
         public void Add(Cart cart)
         {
-            _shopContext.Carts.Add(cart);
-            _shopContext.SaveChanges();
+            if (cart is not null)
+            {
+                _shopContext.Carts.Add(cart);
+                _shopContext.SaveChanges();
+            }
         }
 
         public void AddRange(List<Cart> carts)
         {
-            _shopContext.Carts.AddRange(carts);
-            _shopContext.SaveChanges();
+            if (carts is not null)
+            {
+                _shopContext.Carts.AddRange(carts);
+                _shopContext.SaveChanges();
+            }
         }
 
         public void Delete(int userId)
         {
-            var item = _shopContext.Carts.Find(userId);
+            var item = GetByID(userId);
 
-            if (item != null)
+            if (item is not null)
             {
                 _shopContext.Carts.Remove(item);
                 _shopContext.SaveChanges();

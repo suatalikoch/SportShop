@@ -114,6 +114,8 @@ namespace NUnitTests
             // Arrange
             var expectedUser = new User("User 1", "Userov 1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = 1 };
 
+            _userController.Add(expectedUser);
+
             // Act
             var result = _userController.GetByEmail("useruserov@gmail.com");
 

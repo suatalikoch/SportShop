@@ -24,20 +24,32 @@ namespace Business
 
         public Category GetByID(int id)
         {
-            return _shopContext.Categories.Find(id);
+            return _shopContext.Categories.FirstOrDefault(x => x.Id == id);
         }
 
         public void Add(Category category)
         {
-            _shopContext.Categories.Add(category);
-            _shopContext.SaveChanges();
+            if (category is not null)
+            {
+                _shopContext.Categories.Add(category);
+                _shopContext.SaveChanges();
+            }
+        }
+
+        public void AddRange(List<Category> categories)
+        {
+            if (categories is not null)
+            {
+                _shopContext.Categories.AddRange(categories);
+                _shopContext.SaveChanges();
+            }
         }
 
         public void Update(Category category)
         {
-            var item = _shopContext.Categories.Find(category.Id);
+            var item = GetByID(category.Id);
 
-            if (item != null)
+            if (item is not null)
             {
                 _shopContext.Entry(item).CurrentValues.SetValues(category);
                 _shopContext.SaveChanges();
@@ -46,9 +58,9 @@ namespace Business
 
         public void Delete(int id)
         {
-            var item = _shopContext.Categories.Find(id);
+            var item = GetByID(id);
 
-            if (item != null)
+            if (item is not null)
             {
                 _shopContext.Categories.Remove(item);
                 _shopContext.SaveChanges();
