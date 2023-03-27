@@ -3,10 +3,10 @@ using Data;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace NUnitTests
+namespace NUnitTests.ControllerTests
 {
     [TestFixture]
-    public class ProductTests
+    public class ProductControllerTests
     {
         private ShopContext _shopContext;
         private UserController _userController;
@@ -38,14 +38,24 @@ namespace NUnitTests
         }
 
         [Test]
+        public void Constructor_ShouldCreateProductControllerWithDefaultConnection()
+        {
+            // Arrange
+            var productController = new ProductController();
+
+            // Assert
+            Assert.That(productController, Is.Not.Null);
+        }
+
+        [Test]
         public void GetAll_ReturnsAllProducts()
         {
             // Arrange
             var expectedProducts = new List<Product>
             {
-                new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 },
-                new Product("Product 2", "Description 2", 20.00m, 0.00, "image2.jpg") { Id = 2 },
-                new Product("Product 3", "Description 3", 30.00m, 0.00, "image3.jpg") { Id = 3 },
+                new Product("Product1", "Description1Description1Description1Description1Description1Description1Description1Description1Description1", 10.00m, "image1.jpg") { Id = 1 },
+                new Product("Product2", "Description2Description2Description2Description2Description2Description2Description2Description2Description2", 20.00m, "image2.jpg") { Id = 2 },
+                new Product("Product3", "Description3Description3Description3Description3Description3Description3Description3Description3Description3", 30.00m, "image3.jpg") { Id = 3 },
             };
 
             _productController.AddRange(expectedProducts);
@@ -88,7 +98,7 @@ namespace NUnitTests
         public void GetByID_ReturnsCorrectProduct()
         {
             // Arrange
-            var expectedProduct = new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 };
+            var expectedProduct = new Product("Product1", "Description1Description1Description1Description1Description1Description1Description1Description1Description1", 10.00m, "image1.jpg") { Id = 1 };
 
             _productController.Add(expectedProduct);
 
@@ -123,9 +133,9 @@ namespace NUnitTests
 
             var expectedProducts = new List<Product>
             {
-                new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 },
-                new Product("Product 2", "Description 2", 20.00m, 0.00, "image2.jpg") { Id = 2 },
-                new Product("Product 3", "Description 3", 30.00m, 0.00, "image3.jpg") { Id = 3 },
+                new Product("Product1", "Description1Description1Description1Description1Description1Description1Description1Description1Description1", 10.00m, "image1.jpg") { Id = 1 },
+                new Product("Product2", "Description2Description2Description2Description2Description2Description2Description2Description2Description2", 20.00m, "image2.jpg") { Id = 2 },
+                new Product("Product3", "Description3Description3Description3Description3Description3Description3Description3Description3Description3", 30.00m, "image3.jpg") { Id = 3 },
             };
 
             // Add some products to the favourites for the user
@@ -136,7 +146,7 @@ namespace NUnitTests
                 new Favourite { UserId = userId, ProductId = 3 }
             };
 
-            var user = new User("User 1", "Userov 1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = userId };
+            var user = new User("User1", "Userov1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = userId };
 
             _productController.AddRange(expectedProducts);
             _favouriteController.AddRange(favourites);
@@ -184,9 +194,9 @@ namespace NUnitTests
 
             var expectedProducts = new List<Product>
             {
-                new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 },
-                new Product("Product 2", "Description 2", 20.00m, 0.00, "image2.jpg") { Id = 2 },
-                new Product("Product 3", "Description 3", 30.00m, 0.00, "image3.jpg") { Id = 3 },
+                new Product("Product1", "Description1Description1Description1Description1Description1Description1Description1Description1Description1", 10.00m, "image1.jpg") { Id = 1 },
+                new Product("Product2", "Description2Description2Description2Description2Description2Description2Description2Description2Description2", 20.00m, "image2.jpg") { Id = 2 },
+                new Product("Product3", "Description3Description3Description3Description3Description3Description3Description3Description3Description3", 30.00m, "image3.jpg") { Id = 3 },
             };
 
             // Add some products to the cart for the user
@@ -197,7 +207,7 @@ namespace NUnitTests
                 new Cart { UserId = userId, ProductId = 3 }
             };
 
-            var user = new User("User 1", "Userov 1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = userId };
+            var user = new User("User1", "Userov1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = userId };
 
             _productController.AddRange(expectedProducts);
             _cartController.AddRange(carts);
@@ -220,7 +230,7 @@ namespace NUnitTests
         public void Add_AddsProductToDatabase()
         {
             // Arrange
-            var product = new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 };
+            var product = new Product("Product1", "Description1Description1Description1Description1Description1Description1Description1Description1Description1", 10.00m, "image1.jpg") { Id = 1 };
 
             // Act
             _productController.Add(product);
@@ -252,7 +262,7 @@ namespace NUnitTests
         public void Update_UpdatesProductInDatabase()
         {
             // Arrange
-            var product = new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 };
+            var product = new Product("Product1", "Description1Description1Description1Description1Description1Description1Description1Description1Description1", 10.00m, "image1.jpg") { Id = 1 };
 
             _productController.Add(product);
 
@@ -278,7 +288,7 @@ namespace NUnitTests
         public void Update_DoesNotUpdateNonexistentProduct()
         {
             // Arrange
-            var product = new Product("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 };
+            var product = new Product("Product1", "Description1Description1Description1Description1Description1Description1Description1Description1Description1", 10.00m, "image1.jpg") { Id = 1 };
 
             // Act
             _productController.Update(product);
@@ -293,7 +303,7 @@ namespace NUnitTests
         public void Delete_RemovesProductFromDatabase()
         {
             // Arrange
-            var product = new Product ("Product 1", "Description 1", 10.00m, 0.00, "image1.jpg") { Id = 1 };
+            var product = new Product("Product1", "Description1Description1Description1Description1Description1Description1Description1Description1Description1", 10.00m, "image1.jpg") { Id = 1 };
 
             _productController.Add(product);
 

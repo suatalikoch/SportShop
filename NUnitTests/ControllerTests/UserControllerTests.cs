@@ -3,10 +3,10 @@ using Data;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace NUnitTests
+namespace NUnitTests.ControllerTests
 {
     [TestFixture]
-    public class UserTests
+    public class UserControllerTests
     {
         private ShopContext _shopContext;
         private UserController _userController;
@@ -32,13 +32,23 @@ namespace NUnitTests
         }
 
         [Test]
+        public void Constructor_ShouldCreateUserControllerWithDefaultConnection()
+        {
+            // Arrange
+            var userController = new UserController();
+
+            // Assert
+            Assert.That(userController, Is.Not.Null);
+        }
+
+        [Test]
         public void GetAll_ReturnsAllUsers()
         {
             // Arrange
             var expectedUsers = new List<User>
             {
-                new User("User 1", "Userov 1", "user1userov1@gmail.com", "$#$R31vdfasfasfsaasfsaf") { Id = 1 },
-                new User("User 2", "Userov 2", "user2userov2@gmail.com", "$#$R3safasvdfasfasfsaasfsaf") { Id = 2 },
+                new User("User1", "Userov1", "user1userov1@gmail.com", "$#$R31vdfasfasfsaasfsaf") { Id = 1 },
+                new User("User2", "Userov2", "user2userov2@gmail.com", "$#$R3safasvdfasfasfsaasfsaf") { Id = 2 },
             };
 
             _userController.AddRange(expectedUsers);
@@ -81,7 +91,7 @@ namespace NUnitTests
         public void GetByID_ReturnsCorrectUser()
         {
             // Arrange
-            var expectedUser = new User("User 1", "Userov 1", "user1userov1@gmail.com", "$#$R31vdfasfasfsaasfsaf") { Id = 1 };
+            var expectedUser = new User("User1", "Userov1", "user1userov1@gmail.com", "$#$R31vdfasfasfsaasfsaf") { Id = 1 };
 
             _userController.Add(expectedUser);
 
@@ -112,7 +122,7 @@ namespace NUnitTests
         public void GetByEmail_ReturnsUserWithMatchingEmail()
         {
             // Arrange
-            var expectedUser = new User("User 1", "Userov 1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = 1 };
+            var expectedUser = new User("User1", "Userov1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = 1 };
 
             _userController.Add(expectedUser);
 
@@ -143,7 +153,7 @@ namespace NUnitTests
         public void Add_AddsUserToDatabase()
         {
             // Arrange
-            var expectedUser = new User("User 1", "Userov 1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = 1 };
+            var expectedUser = new User("User1", "Userov1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = 1 };
 
             // Act
             _userController.Add(expectedUser);
@@ -175,14 +185,14 @@ namespace NUnitTests
         public void Update_UpdatesUserInDatabase()
         {
             // Arrange
-            var expectedUser = new User("User 1", "Userov 1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = 1 };
+            var expectedUser = new User("User1", "Userov1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = 1 };
 
             _userController.Add(expectedUser);
 
             // Act
 
-            expectedUser.FirstName = "New FirstName";
-            expectedUser.LastName = "New LastName";
+            expectedUser.FirstName = "NewFirstName";
+            expectedUser.LastName = "NewLastName";
 
             _userController.Update(expectedUser);
 
@@ -201,7 +211,7 @@ namespace NUnitTests
         public void Update_DoesNotUpdateNonexistentUser()
         {
             // Arrange
-            var expectedUser = new User("User 1", "Userov 1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = 1 };
+            var expectedUser = new User("User1", "Userov1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = 1 };
 
             // Act
             _userController.Update(expectedUser);
@@ -216,7 +226,7 @@ namespace NUnitTests
         public void Delete_RemovesUserFromDatabase()
         {
             // Arrange
-            var expectedUser = new User("User 1", "Userov 1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = 1 };
+            var expectedUser = new User("User1", "Userov1", "useruserov@gmail.com", "@dsfwqfas25151dsafasf1o1v") { Id = 1 };
 
             _userController.Add(expectedUser);
 

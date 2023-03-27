@@ -3,10 +3,10 @@ using Data;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace NUnitTests
+namespace NUnitTests.ControllerTests
 {
     [TestFixture]
-    public class CategoryTests
+    public class CategoryControllerTests
     {
         private ShopContext _shopContext;
         private CategoryController _categoryController;
@@ -29,6 +29,16 @@ namespace NUnitTests
             // Dispose of the in-memory database after each test
             _shopContext.Database.EnsureDeleted();
             _shopContext.Dispose();
+        }
+
+        [Test]
+        public void Constructor_ShouldCreateCategoryControllerWithDefaultConnection()
+        {
+            // Arrange
+            var categoryController = new CategoryController();
+
+            // Assert
+            Assert.That(categoryController, Is.Not.Null);
         }
 
         [Test]

@@ -80,11 +80,5 @@ namespace Business
                 _shopContext.SaveChanges();
             }
         }
-
-        public void DeleteAll()
-        {
-            _shopContext.Users.RemoveRange(_shopContext.Users);
-            _shopContext.SaveChanges();
-        }
     }
 }

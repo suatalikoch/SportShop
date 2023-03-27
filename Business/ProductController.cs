@@ -116,11 +116,5 @@ namespace Business
                 _shopContext.SaveChanges();
             }
         }
-
-        public void DeleteAll()
-        {
-            _shopContext.Products.RemoveRange(_shopContext.Products);
-            _shopContext.SaveChanges();
-        }
     }
 }
