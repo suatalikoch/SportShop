@@ -17,16 +17,19 @@ namespace Business
             _shopContext = shopContext;
         }
 
+        // Get all favourites
         public List<Favourite> GetAll()
         {
             return _shopContext.Favourites.ToList();
         }
 
+        // Get favourite by ID
         public Favourite GetByID(int userId)
         {
             return _shopContext.Favourites.FirstOrDefault(x => x.UserId == userId);
         }
 
+        // Add new favourite
         public void Add(Favourite favourite)
         {
             if (favourite is not null)
@@ -36,6 +39,7 @@ namespace Business
             }
         }
 
+        // Add new favourites
         public void AddRange(List<Favourite> favourites)
         {
             if (favourites is not null)
@@ -45,6 +49,7 @@ namespace Business
             }
         }
 
+        // Remove favourite
         public void Delete(int userId)
         {
             var item = GetByID(userId);
@@ -56,6 +61,7 @@ namespace Business
             }
         }
 
+        // Remove all favourites
         public void DeleteAll()
         {
             _shopContext.Favourites.RemoveRange(_shopContext.Favourites);

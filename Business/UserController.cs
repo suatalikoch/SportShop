@@ -1,4 +1,4 @@
-﻿using Data.Models;
+﻿    using Data.Models;
 using Data;
 
 namespace Business
@@ -17,21 +17,25 @@ namespace Business
             _shopContext = shopContext;
         }
 
+        // Get all users
         public List<User> GetAll()
         {
             return _shopContext.Users.ToList();
         }
 
+        // Get user by ID
         public User GetByID(int id)
         {
             return _shopContext.Users.FirstOrDefault(x => x.Id == id);
         }
 
+        // Get user by email
         public User GetByEmail(string email)
         {
             return _shopContext.Users.FirstOrDefault(x => x.Email == email);
         }
 
+        // Add new user
         public void Add(User user)
         {
             if (user is not null)
@@ -41,6 +45,7 @@ namespace Business
             }
         }
 
+        // Add new users
         public void AddRange(List<User> users)
         {
             if (users is not null)
@@ -50,6 +55,7 @@ namespace Business
             }
         }
 
+        // Update existing user
         public void Update(User user)
         {
             var item = _shopContext.Users.Find(user.Id);
@@ -61,6 +67,7 @@ namespace Business
             }
         }
 
+        // Remove user by ID
         public void Delete(int id)
         {
             var item = _shopContext.Users.Find(id);
@@ -72,6 +79,7 @@ namespace Business
             }
         }
 
+        // Remove users
         public void RemoveRange(List<User> users)
         {
             if (users is not null)

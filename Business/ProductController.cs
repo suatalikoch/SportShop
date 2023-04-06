@@ -17,16 +17,19 @@ namespace Business
             _shopContext = shopContext;
         }
 
+        // Get all products
         public List<Product> GetAll()
         {
             return _shopContext.Products.ToList();
         }
 
+        // Get product by ID
         public Product GetByID(int id)
         {
             return _shopContext.Products.FirstOrDefault(x => x.Id == id);
         }
 
+        // Get products in favourites by userID
         public List<Product> GetFavouriteProducts(int userId)
         {
             List<Product> products = new();
@@ -43,6 +46,7 @@ namespace Business
             return products;
         }
 
+        // Get products in cart by userID
         public List<Product> GetCartProducts(int userId)
         {
             List<Product> products = new();
@@ -59,6 +63,7 @@ namespace Business
             return products;
         }
 
+        // Add new product
         public void Add(Product product)
         {
             if (product is not null)
@@ -68,6 +73,7 @@ namespace Business
             }
         }
 
+        // Add new products
         public void AddRange(List<Product> products)
         {
             if (products is not null)
@@ -77,6 +83,7 @@ namespace Business
             }
         }
 
+        // Update existing product
         public void Update(Product product)
         {
             var item = GetByID(product.Id);
@@ -97,6 +104,7 @@ namespace Business
             }
         }
 
+        // Remove products
         public void RemoveRange(List<Product> products)
         {
             if (products is not null)
@@ -106,6 +114,7 @@ namespace Business
             }
         }
 
+        // Remove product by ID
         public void Delete(int id)
         {
             var item = GetByID(id);

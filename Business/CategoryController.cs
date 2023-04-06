@@ -17,16 +17,19 @@ namespace Business
             _shopContext = shopContext;
         }
 
+        // Get all categories
         public List<Category> GetAll()
         {
             return _shopContext.Categories.ToList();
         }
 
+        // Get category by ID
         public Category GetByID(int id)
         {
             return _shopContext.Categories.FirstOrDefault(x => x.Id == id);
         }
 
+        // Add new category
         public void Add(Category category)
         {
             if (category is not null)
@@ -36,6 +39,7 @@ namespace Business
             }
         }
 
+        // Add new categories
         public void AddRange(List<Category> categories)
         {
             if (categories is not null)
@@ -45,6 +49,7 @@ namespace Business
             }
         }
 
+        // Update existing category
         public void Update(Category category)
         {
             var item = GetByID(category.Id);
@@ -56,6 +61,7 @@ namespace Business
             }
         }
 
+        // Remove category
         public void Delete(int id)
         {
             var item = GetByID(id);

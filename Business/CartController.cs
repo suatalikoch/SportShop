@@ -17,16 +17,19 @@ namespace Business
             _shopContext = shopContext;
         }
 
+        // Get all carts
         public List<Cart> GetAll()
         {
             return _shopContext.Carts.ToList();
         }
 
+        // Get cart by ID
         public Cart GetByID(int userId)
         {
             return _shopContext.Carts.FirstOrDefault(x => x.UserId == userId);
         }
 
+        // Add new cart 
         public void Add(Cart cart)
         {
             if (cart is not null)
@@ -36,6 +39,7 @@ namespace Business
             }
         }
 
+        // Add new carts
         public void AddRange(List<Cart> carts)
         {
             if (carts is not null)
@@ -45,6 +49,7 @@ namespace Business
             }
         }
 
+        // Remove cart
         public void Delete(int userId)
         {
             var item = GetByID(userId);
@@ -56,6 +61,7 @@ namespace Business
             }
         }
 
+        // Remove all carts
         public void DeleteAll()
         {
             _shopContext.Carts.RemoveRange(_shopContext.Carts);
