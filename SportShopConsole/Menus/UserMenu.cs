@@ -85,6 +85,9 @@ namespace SportShopConsole.Menus
             Console.Write("LastName: ");
             user.LastName = Console.ReadLine();
 
+            Console.Write("Password: ");
+            user.Password = Console.ReadLine();
+
             Console.Write("Email: ");
             user.Email = Console.ReadLine();
 
@@ -105,8 +108,7 @@ namespace SportShopConsole.Menus
 
             Console.Write("Country: ");
             user.Country = Console.ReadLine();
-
-            Console.Write("RegistrationDate: ");
+            
             user.RegistrationDate = DateTime.Now;
 
             userBusiness.Add(user);
